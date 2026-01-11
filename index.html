@@ -100,6 +100,51 @@
   }
 }
 
+    /* ===== MOBILE NAVBAR FIX ===== */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(13,13,13,0.95);
+    backdrop-filter: blur(12px);
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 25px 0;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+}
+
 /* MOBILE SAFE */
 @media (max-width: 768px) {
   .spark {
@@ -314,6 +359,12 @@
   <a href="https://wa.me/919142450715" class="nav-cta">
     Get Started
   </a>
+  <div class="menu-toggle" id="menuToggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
 </nav>
 
 <!-- HERO -->
@@ -423,6 +474,14 @@
 
   // Mobile tap
   logo.addEventListener('touchstart', createSparks);
+</script>
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
 </script>
 
 </body>
