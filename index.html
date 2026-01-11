@@ -118,26 +118,32 @@
 
 /* MOBILE VIEW */
 @media (max-width: 768px) {
+
   .menu-toggle {
     display: flex;
+    z-index: 1100;
   }
 
   .nav-links {
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 70px;
     left: 0;
     width: 100%;
-    background: rgba(13,13,13,0.95);
+    height: calc(100vh - 70px);
+    background: rgba(13,13,13,0.98);
     backdrop-filter: blur(12px);
+
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 25px 0;
-    display: none;
+    gap: 28px;
+
+    transform: translateY(-100%);
+    transition: transform 0.35s ease;
   }
 
   .nav-links.active {
-    display: flex;
+    transform: translateY(0);
   }
 
   .nav-cta {
@@ -476,13 +482,21 @@
   logo.addEventListener('touchstart', createSparks);
 </script>
 <script>
-  const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.querySelector('.nav-links');
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.querySelector(".nav-links");
 
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+
+  // Auto close menu when link clicked (mobile UX)
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+    });
   });
 </script>
+
 
 </body>
 </html>
