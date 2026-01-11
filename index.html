@@ -590,6 +590,17 @@
   });
 </script>
 
+  <script>
+  const words = document.querySelectorAll(".word");
+  let current = 0;
+
+  setInterval(() => {
+    words[current].classList.remove("active");
+    current = (current + 1) % words.length;
+    words[current].classList.add("active");
+  }, 2200);
+</script>
+
 
 </body>
 </html>
