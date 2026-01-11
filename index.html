@@ -244,6 +244,7 @@ body {
 
 /* Hero Wrapper */
 .hero {
+  min-height: 100svh;
   position: relative;
   min-height: 100vh;
   background: #0d0d0d;
@@ -470,6 +471,16 @@ body {
 @keyframes floatLines {
   from { transform: translateY(-20%); }
   to { transform: translateY(120%); }
+}
+@media (max-width: 480px) {
+  .hero-container {
+    padding-top: 56px; /* pehle 72px tha */
+  }
+}
+@media (min-width: 768px) {
+  .hero {
+    min-height: clamp(520px, 85vh, 720px);
+  }
 }
 
 /* ================= HERO SECTION CSS END ================= */
