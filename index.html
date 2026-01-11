@@ -274,45 +274,43 @@
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 4vw, 3.6rem);
-  line-height: 1.2;
-  margin-bottom: 25px;
-}
-    .hero-title {
+  display: flex;
+  flex-wrap: wrap;          /* allows line breaks naturally */
+  align-items: center;      /* vertical align rotating word */
+  gap: 8px;                 /* spacing between static and rotating text */
   word-break: keep-all;
   overflow-wrap: normal;
 }
 
 
+
 .word-rotate {
-  display: inline-flex;
+  display: inline-block;   /* allows text to expand naturally */
   position: relative;
-  align-items: flex-end;
+  vertical-align: bottom;
   height: 1.2em;
   overflow: hidden;
-  vertical-align: bottom;
-  max-width: 100%;
+  min-width: 200px;        /* minimum space to prevent collapse */
 }
 
-
 .word {
+  display: block;           /* take full width of container */
   position: absolute;
   left: 0;
   top: 0;
   opacity: 0;
-  transform: translateY(120%);
-  transition: transform 0.6s ease, opacity 0.6s ease;
-  white-space: nowrap;
+  transform: translateY(100%);
+  white-space: nowrap;      /* prevent wrapping */
   color: var(--primary);
   font-weight: 700;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  width: 100%;              /* fill parent, avoid cutting */
 }
-
 
 .word.active {
   opacity: 1;
   transform: translateY(0);
 }
-
 
 .hero-sub {
   font-size: 1.05rem;
@@ -468,16 +466,17 @@
 <section class="hero" id="home">
   <div class="hero-inner">
 
-    <h1 class="hero-title">
-      High-Conversion
-      <span class="word-rotate">
-  <span class="word active">Websites</span>
-  <span class="word">Landing&nbsp;Pages</span>
-  <span class="word">Business&nbsp;Sites</span>
-  <span class="word">Digital&nbsp;Platforms</span>
-    </span>
-      That Turn Visitors Into Clients
-    </h1>
+  <h1 class="hero-title">
+  High-Conversion
+  <span class="word-rotate">
+    <span class="word active">Websites</span>
+    <span class="word">Landing&nbsp;Pages</span>
+    <span class="word">Business&nbsp;Sites</span>
+    <span class="word">Digital&nbsp;Platforms</span>
+  </span>
+  That Turn Visitors Into Clients
+</h1>
+
 
     <p class="hero-sub">
       SparkEdge builds fast, SEO-optimized digital experiences for coaching institutes,
