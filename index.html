@@ -226,7 +226,7 @@
   box-shadow: 0 14px 45px rgba(252,101,58,0.55);
 }
 
-    /* ===== HERO UPGRADE ===== */
+  /* HERO SECTION */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -309,7 +309,7 @@
   font-size:0.95rem;
 }
 
-/* Client ticker */
+/* CLIENT TICKER */
 .client-ticker {
   overflow:hidden;
   margin-top:10px;
@@ -320,11 +320,11 @@
 .ticker-track {
   display:flex;
   gap:40px;
-  animation: ticker 20s linear infinite;
+  white-space:nowrap;
+  animation: ticker 12s linear infinite;
 }
 
 .ticker-track span {
-  white-space: nowrap;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--primary);
@@ -335,7 +335,7 @@
   100% { transform: translateX(-50%); }
 }
 
-/* Background animated curves using canvas */
+/* HERO BACKGROUND CANVAS */
 #hero-bg {
   position:absolute;
   top:0;
@@ -346,14 +346,20 @@
   pointer-events:none;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .hero-inner { padding: 60px 4%; }
-  .word-rotate { min-width: 150px; }
-  .hero-title { font-size: clamp(1.8rem,5vw,2.8rem); }
-  .hero-sub { font-size: 0.95rem; }
-  .client-ticker { padding-top:5px; }
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .hero { padding:100px 6% 60px; }
+  .hero-title { font-size: clamp(2rem,4vw,3rem); }
 }
+
+@media (max-width: 768px) {
+  .hero { padding:80px 4% 50px; }
+  .hero-title { font-size: clamp(1.8rem,5vw,2.6rem); }
+  .word-rotate { min-width:150px; }
+  .hero-sub { font-size:0.95rem; }
+  .ticker-track { animation: ticker 10s linear infinite; gap:30px; }
+}
+
 
 
     /* TRUST */
@@ -524,7 +530,6 @@
 </section>
 
 
-
 <!-- TRUST -->
 <section class="trust">
   <p>
@@ -670,6 +675,56 @@ function animate(){
   curves.forEach(c=>{
     ctx.beginPath();
     ctx.strokeStyle = "rgba(252,101,58,0.08)";
+    ctx.lineWidth = 2;
+    ctx.moveTo(0, c.y);
+    for(let x=0;x<width;x+=20){
+      ctx.lineTo(x, c.y + Math.sin(x*0.02 + Date.now()*0.002*c.speed + c.offset)*c.amplitude);
+    }
+    ctx.stroke();
+  });
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+  width=canvas.width=window.innerWidth;
+  height=canvas.height=window.innerHeight;
+});
+// Word rotation
+const words = document.querySelectorAll(".word");
+let current = 0;
+setInterval(() => {
+  words[current].classList.remove("active");
+  current = (current + 1) % words.length;
+  words[current].classList.add("active");
+}, 2000); // faster rotation
+
+// Client ticker duplication for infinite loop
+const tickerTrack = document.querySelector(".ticker-track");
+tickerTrack.innerHTML += tickerTrack.innerHTML;
+
+// Canvas background animated curves
+const canvas = document.getElementById("hero-bg");
+const ctx = canvas.getContext("2d");
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+const curves = [];
+for(let i=0;i<6;i++){
+  curves.push({
+    y: Math.random()*height,
+    amplitude: 20 + Math.random()*40,
+    speed: 0.3 + Math.random()*0.3,
+    offset: Math.random()*Math.PI*2
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,width,height);
+  curves.forEach(c=>{
+    ctx.beginPath();
+    ctx.strokeStyle = "rgba(252,101,58,0.08)"; // subtle & blurry
     ctx.lineWidth = 2;
     ctx.moveTo(0, c.y);
     for(let x=0;x<width;x+=20){
