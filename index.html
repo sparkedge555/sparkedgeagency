@@ -146,9 +146,17 @@
     transform: translateY(0);
   }
 
+ @media (max-width: 768px) {
+
   .nav-cta {
-    display: none;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    z-index: 1200;
   }
+
+}
+
 }
 
 /* MOBILE SAFE */
@@ -157,6 +165,10 @@
     width: 5px;
     height: 5px;
   }
+}
+  
+.logo {
+  z-index: 1200;
 }
 
 .logo {
