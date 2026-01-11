@@ -66,6 +66,48 @@
   z-index: 1000;
 }
 
+  /* LOGO SPARK EFFECT */
+.logo {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.spark-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #FC653A, transparent);
+  border-radius: 50%;
+  animation: fly 1.2s ease-out forwards;
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* MOBILE SAFE */
+@media (max-width: 768px) {
+  .spark {
+    width: 5px;
+    height: 5px;
+  }
+}
+
 .logo {
   font-size: 1.4rem;
   font-weight: 700;
@@ -256,7 +298,11 @@
 
 <!-- NAV -->
 <nav class="navbar">
-  <div class="logo">SparkEdge</div>
+ <div class="logo" id="logo">
+  SparkEdge
+  <span class="spark-container"></span>
+</div>
+
 
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
@@ -348,6 +394,36 @@
 </footer>
 
 <a class="whatsapp" href="https://wa.me/919142450715">WhatsApp</a>
+
+  <script>
+  const logo = document.getElementById('logo');
+  const container = logo.querySelector('.spark-container');
+
+  function createSparks() {
+    for (let i = 0; i < 10; i++) {
+      const spark = document.createElement('span');
+      spark.classList.add('spark');
+
+      const x = (Math.random() - 0.5) * 120 + 'px';
+      const y = (Math.random() - 0.5) * 120 + 'px';
+
+      spark.style.setProperty('--x', x);
+      spark.style.setProperty('--y', y);
+
+      container.appendChild(spark);
+
+      setTimeout(() => {
+        spark.remove();
+      }, 1200);
+    }
+  }
+
+  // Desktop hover
+  logo.addEventListener('mouseenter', createSparks);
+
+  // Mobile tap
+  logo.addEventListener('touchstart', createSparks);
+</script>
 
 </body>
 </html>
