@@ -1483,6 +1483,30 @@ body {
   }
 }
 
+/* CTA h3: Keep in one line on desktop */
+.pricing-final-cta h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  white-space: nowrap;  /* Prevent line break on desktop */
+  overflow: hidden;     /* Ensure no overflow outside container */
+  text-overflow: ellipsis; /* Optional: adds ... if too long */
+}
+
+/* Allow wrapping on smaller screens */
+@media (max-width: 768px) {
+  .pricing-final-cta h3 {
+    white-space: normal; /* Wrap naturally on tablets & mobiles */
+    font-size: 1.8rem;   /* Slightly smaller for better fit */
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-final-cta h3 {
+    font-size: 1.6rem;
+  }
+}
+
+
      /* ================= PRICING SECTION CSS END ================= */
 
 
