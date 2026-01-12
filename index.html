@@ -823,7 +823,151 @@ body {
 
 
 /* ================= END ================= */
-    
+
+    /* ================= HOW WE WORK SECTION CSS START ================= */
+.how-we-work.flow {
+  background: #0d0d0d;
+  padding: 100px 20px;
+}
+
+/* Section Head */
+.section-head {
+  position: relative;
+  padding-bottom: 28px;
+  text-align: center; /* Desktop default */
+}
+.section-head h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+.section-head h2 span {
+  background: linear-gradient(90deg, #FC653A, #ff8a65);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-head p {
+  color: #b5b5b5;
+  margin-top: 12px;
+}
+/* Glowing divider */
+.section-head::after {
+  content: "";
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #FC653A, transparent);
+  display: block;
+  margin: 18px auto 0;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(252, 101, 58, 0.6);
+}
+
+/* Ladder Flow Wrapper */
+.flow-wrapper {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* Curved / vertical line */
+.flow-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #FC653A, transparent);
+  opacity: 0.35;
+  transform: translateX(-50%);
+}
+
+/* Cards */
+.work-card {
+  width: 46%;
+  background: linear-gradient(180deg, #161616, #1f1f1f);
+  padding: 32px;
+  border-radius: 18px;
+  position: relative;
+  margin: 60px 0;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.8s ease forwards;
+}
+.work-card:nth-child(2) { animation-delay: 0.2s; }
+.work-card:nth-child(3) { animation-delay: 0.4s; }
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Zig-zag */
+.work-card.left { margin-right: auto; }
+.work-card.right { margin-left: auto; }
+
+/* Step Dot */
+.step-dot {
+  position: absolute;
+  top: 28px;
+  right: -38px;
+  width: 14px;
+  height: 14px;
+  background: #FC653A;
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(252, 101, 58, 0.8);
+}
+.work-card.right .step-dot { left: -38px; right: auto; }
+
+/* Card text */
+.work-card h3 { color: #fff; margin-bottom: 10px; }
+.work-card p { color: #b5b5b5; margin-bottom: 16px; }
+.work-card ul { padding-left: 18px; }
+.work-card ul li { color: #d1d1d1; margin-bottom: 8px; font-size: 0.95rem; }
+
+/* Featured card glow */
+.work-card.featured {
+  border: 1px solid rgba(252, 101, 58, 0.5);
+  box-shadow: 0 0 50px rgba(252, 101, 58, 0.18);
+}
+
+/* Hover */
+.work-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+
+/* CTA */
+.work-cta {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Desktop center */
+  text-align: center; /* Desktop center */
+}
+.work-cta p { color: #b5b5b5; margin-bottom: 14px; }
+.work-cta .cta-btn {
+  display: inline-block;
+  background: #FC653A;
+  color: #fff;
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 6px;
+}
+.work-cta .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 0 20px rgba(252,101,58,0.6); }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .flow-line { left: 20px; }
+  .work-card { width: 100%; margin-left: 40px; }
+  .work-card.left, .work-card.right { margin-left: 40px; }
+  .step-dot { left: -30px !important; right: auto !important; }
+
+  /* CTA left-aligned */
+  .work-cta { align-items: flex-start; text-align: left; }
+}
+/* ================= HOW WE WORK SECTION CSS end ================= */
 </style>
 </head>
 
@@ -1070,6 +1214,70 @@ body {
   </div>
 </section>
 <!-- ================= PRIMARY SERVICES SECTION END ================= -->
+
+<!-- ================= HOW WE WORK SECTION START ================= -->
+<section class="how-we-work flow">
+  <div class="container">
+
+    <!-- Section Heading -->
+    <div class="section-head">
+      <h2>Our Simple <span>3-Step</span> Process</h2>
+      <p>From idea to a premium online presence — without confusion or stress.</p>
+    </div>
+
+    <!-- Ladder Flow Wrapper -->
+    <div class="flow-wrapper">
+
+      <!-- Curved / vertical line -->
+      <div class="flow-line"></div>
+
+      <!-- Step 1 -->
+      <div class="work-card left">
+        <span class="step-dot"></span>
+        <h3>Free Audit & Strategy</h3>
+        <p>We understand your business before building anything.</p>
+        <ul>
+          <li>Free requirement call</li>
+          <li>Clear roadmap</li>
+          <li>No commitment</li>
+        </ul>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="work-card right featured">
+        <span class="step-dot"></span>
+        <h3>Design, Build & Optimize</h3>
+        <p>Premium, fast, mobile-first website built to convert.</p>
+        <ul>
+          <li>Modern UI</li>
+          <li>SEO + speed</li>
+          <li>Strong CTAs</li>
+        </ul>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="work-card left">
+        <span class="step-dot"></span>
+        <h3>Launch & Growth Support</h3>
+        <p>Your website goes live, ready to generate leads.</p>
+        <ul>
+          <li>Smooth launch</li>
+          <li>WhatsApp & call setup</li>
+          <li>Support when needed</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="work-cta">
+      <p>Not sure where to start? We’ll guide you for free.</p>
+      <a href="#contact" class="cta-btn">Get Free Audit</a>
+    </div>
+
+  </div>
+</section>
+<!-- ================= HOW WE WORK SECTION END ================= -->
 
 
 
