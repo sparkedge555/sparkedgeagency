@@ -484,6 +484,118 @@ body {
 }
 
 /* ================= HERO SECTION CSS END ================= */
+
+
+/* ================= TRUST SECTION CSS START ================= */
+
+.trust-section {
+  background: #0d0d0d;
+  padding: clamp(20px, 8vw, 30px) 24px;
+  color: #ffffff;
+}
+
+.trust-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trust-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 56px;
+}
+
+.trust-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.trust-header p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #b5b5b5;
+}
+
+/* Scroll Wrapper */
+.trust-scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+
+  padding-top: 12px;      /* 🔥 CREATES SPACE FOR HOVER */
+  margin-top: -12px;      /* 🔥 VISUALLY NEUTRALIZES */
+}
+
+.trust-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Grid */
+.trust-grid {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding-inline: 4px;
+}
+
+/* Cards */
+.trust-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 28px;
+  transition: transform 0.35s ease,
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  min-width: 300px;
+  max-width: 340px;
+}
+
+.trust-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.trust-card p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #b5b5b5;
+}
+
+.trust-card strong {
+  color: #ffffff;
+}
+
+.trust-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(252, 101, 58, 1.2);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* Highlight Line */
+.trust-highlight {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.trust-highlight p {
+  font-size: 0.95rem;
+  color: #b5b5b5;
+}
+
+.trust-highlight strong {
+  color: #FC653A;
+}
+
+/* ================= TRUST SECTION CSS END ================= */
+    
 </style>
 </head>
 
@@ -565,6 +677,62 @@ body {
 </section>
 <!-- ================= HERO SECTION END ================= -->
 
+<!-- ================= TRUST SECTION START ================= -->
+<section class="trust-section">
+  <div class="trust-container">
+
+    <div class="trust-header">
+      <h2>Built on Trust, Expertise & Clear Results</h2>
+      <p>
+        We don’t sell promises — we build fast, reliable and premium static
+        websites that help institutions look credible, professional and
+        trustworthy online.
+      </p>
+    </div>
+
+    <div class="trust-scroll-wrapper">
+      <div class="trust-grid" id="trustGrid">
+
+        <div class="trust-card">
+          <h3>IIT Patna Alumni & Students</h3>
+          <p>
+            Our core team includes <strong>IIT Patna alumni & current students</strong>,
+            bringing engineering discipline, clean systems and problem-solving
+            mindset into every project we deliver.
+          </p>
+        </div>
+
+        <div class="trust-card">
+          <h3>Focused Service, Better Results</h3>
+          <p>
+            We currently specialize in <strong>high-performance static websites</strong>
+            — ensuring blazing speed, strong SEO foundation and zero unnecessary
+            complexity for schools, hospitals and institutes.
+          </p>
+        </div>
+
+        <div class="trust-card">
+          <h3>Designed for Conversion</h3>
+          <p>
+            Every layout, color and interaction is designed to
+            <strong>build trust and drive enquiries</strong>, not just look good.
+            Premium design with a clear business goal.
+          </p>
+        </div>
+
+      </div>
+ </div> </div>
+   
+
+  <div class="trust-highlight">
+    <p>
+      Trusted by growing institutions who want
+      <strong>clarity, speed and long-term reliability</strong>
+      — not over-engineered solutions.
+    </p>
+  </div>
+</section>
+<!-- ================= TRUST SECTION END ================= -->
 
 
 
