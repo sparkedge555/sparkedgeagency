@@ -267,6 +267,41 @@ body {
   z-index: 2;
 }
 
+
+/* ===== FORCE HERO SYSTEM BOX STYLE ===== */
+.hero-system-box {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 22px;
+  margin-bottom: 20px;
+
+  background-color: #0d0d0d !important;
+  border: 1px solid rgba(252, 101, 58, 0.6);
+  border-radius: 999px;
+
+  color: #FC653A !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(252, 101, 58, 0.25),
+    0 0 24px rgba(252, 101, 58, 0.25);
+
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .hero-system-box {
+    padding: 8px 18px;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+}
+
 /* Content Alignment */
 .hero-content {
   display: flex;
@@ -1263,6 +1298,10 @@ body {
   </div>
 
   <div class="hero-container">
+    <div class="hero-system-box">
+  THE DIGITAL GROWTH SYSTEM
+</div>
+
     <h1>
       We Build
       <span class="rotate-text">
