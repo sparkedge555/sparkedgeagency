@@ -948,32 +948,32 @@ body {
 }
 .work-cta p { color: #b5b5b5; margin-bottom: 14px; }
 .work-cta .cta-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   background: linear-gradient(135deg, #FC653A, #ff7a55);
-  color: #0d0d0d;
-  padding: 14px 34px;
-  border-radius: 50px;
+  color: #fff;                /* same as solutions CTA */
+  padding: 12px 26px;         /* same as solutions CTA */
+  border-radius: 10px;        /* same as solutions CTA */
   font-weight: 600;
   transition: all 0.35s ease;
   margin-top: 6px;
-  box-shadow: 0 12px 32px rgba(252,101,58,0.35);
+  box-shadow: 0 8px 30px rgba(252,101,58,0.35); /* same as solutions */
 }
 .work-cta .cta-btn:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 18px 50px rgba(252,101,58,0.55);
+  box-shadow: 0 14px 45px rgba(252,101,58,0.55); /* match solutions */
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .flow-line { left: 20px; }
-  .work-card { width: 100%; margin-left: 20px; margin-right: 20px; }
-  .work-card.left, .work-card.right { margin-left: 20px; margin-right: 20px; }
-  .step-dot { left: -20px !important; right: auto !important; }
 
-  /* CTA left-aligned */
-  .work-cta { align-items: flex-start; text-align: left; }
+//mobile//
+@media (max-width: 768px) {
+  .work-card {
+    width: calc(100% - 32px); /* reduce width by padding instead of margin */
+    margin: 16px auto;        /* center cards with small gap */
+    padding: 24px;             /* slightly reduce padding to fit */
+  }
+  .work-card.left, .work-card.right {
+    margin: 16px auto;         /* ensure full card visible */
+  }
+  .step-dot { left: -20px !important; right: auto !important; }
 }
 </style>
 <!-- ================= HOW WE WORK SECTION END ================= -->
