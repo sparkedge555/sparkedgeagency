@@ -517,6 +517,54 @@ body {
 
 }
 
+    /* ✨ Smooth Hero → Trust transition */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(
+    to bottom,
+    rgba(13,13,13,0),
+    rgba(13,13,13,0.9),
+    #0d0d0d
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Mobile: tighter fade */
+@media (max-width: 480px) {
+  .hero::after {
+    height: 60px;
+  }
+}
+
+.trust-section {
+  position: relative;
+}
+
+.trust-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(
+    to top,
+    transparent,
+    rgba(13,13,13,0.6)
+  );
+}
+
+/* 🔧 Ensure hero content stays above transition fade */
+.hero-container {
+  position: relative;
+  z-index: 3;
+}
 
 /* ================= HERO SECTION CSS END ================= */
 
