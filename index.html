@@ -483,6 +483,31 @@ body {
   }
 }
 
+
+/* 🔧 FIX: Reduce extra bottom space of HERO on mobile */
+@media (max-width: 480px) {
+
+  .hero {
+    min-height: auto; /* remove forced tall height */
+    padding-bottom: 12px; /* very tight bottom */
+  }
+
+  .hero-container {
+    padding-bottom: 16px; /* reduce internal space */
+  }
+
+  .hero hr {
+    margin-bottom: 16px; /* tighter divider spacing */
+  }
+}
+
+/* 🔧 Reduce top gap of Trust section slightly */
+@media (max-width: 480px) {
+  .trust-section {
+    padding-top: 12px;
+  }
+}
+
 /* ================= HERO SECTION CSS END ================= */
 
 
