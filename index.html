@@ -1261,6 +1261,230 @@ body {
 /* ================= TESTIMONIAL SECTION CSS END ================= */
 
 
+    /* ================= PRICING SECTION CSS START ================= */
+
+.pricing-v2 {
+  padding: 110px 6%;
+  background: #020814;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Intro */
+.pricing-intro {
+  max-width: 780px;
+  margin-bottom: 70px;
+  text-align: center; /* Perfectly center */
+}
+
+.pricing-intro h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+}
+
+.pricing-intro h2 span {
+  color: #FC653A;
+}
+
+.pricing-intro p {
+  margin-top: 14px;
+  font-size: 1.05rem;
+  color: #c7d0e0;
+  line-height: 1.6;
+}
+
+/* Services Container */
+.pricing-services {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px; /* Prevent touching screen edges */
+  padding: 0 10px; /* Extra padding to avoid edges */
+  box-sizing: border-box;
+}
+
+/* Individual Cards */
+.service-panel {
+  background: #050b18;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 36px;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 480px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+
+.service-panel.featured {
+  border-color: rgba(252,101,58,0.6);
+  box-shadow: 0 0 40px rgba(252,101,58,0.15);
+}
+
+.service-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.service-head h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.starting {
+  color: #FC653A;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.service-desc {
+  margin: 14px 0 22px;
+  color: #d6dbe6;
+  font-size: 0.95rem;
+}
+
+.service-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-points li {
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: #cfd6e6;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* CTA */
+.pricing-final-cta {
+  margin-top: 60px;
+  background: #FC653A;
+  color: #0b0f19;
+  border-radius: 22px;
+  padding: 60px 6%;
+  text-align: center; /* Perfectly center */
+  max-width: 780px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pricing-final-cta h3 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.pricing-final-cta p {
+  margin: 16px auto 28px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.primary-cta {
+  display: inline-block;
+  background: #0b0f19;
+  color: #ffffff;
+  padding: 15px 34px;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.primary-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.cta-trust {
+  display: block;
+  margin-top: 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .service-panel {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-intro h2 {
+    font-size: 2.1rem;
+  }
+
+  .pricing-services {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .service-panel {
+    padding: 28px;
+    border-radius: 14px;
+  }
+
+  .service-head h3 {
+    font-size: 1.2rem;
+  }
+
+  .service-desc, .service-points li {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-v2 {
+    padding: 80px 4%;
+  }
+
+  .pricing-intro h2 {
+    font-size: 1.8rem;
+  }
+
+  .pricing-intro p,
+  .service-desc,
+  .service-points li {
+    font-size: 0.85rem;
+  }
+
+  .service-panel {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .pricing-final-cta {
+    padding: 40px 4%;
+  }
+
+  .pricing-final-cta h3 {
+    font-size: 1.6rem;
+  }
+
+  .pricing-final-cta p {
+    font-size: 0.95rem;
+  }
+}
+
+     /* ================= PRICING SECTION CSS END ================= */
+
 
 </style>
 </head>
@@ -1710,6 +1934,94 @@ body {
 </section>
 
 <!-- ================= TESTIMONIAL SECTION END ================= -->
+
+<!-- ================= PRICING START ================= -->
+
+
+  <section class="pricing-v2">
+  <!-- Intro -->
+  <div class="pricing-intro">
+    <h2>Simple pricing. <span>Serious results.</span></h2>
+    <p>
+      We don’t sell websites. We build digital assets that attract, convert, and support real business growth.
+    </p>
+  </div>
+
+  <!-- Services Container -->
+  <div class="pricing-services">
+    <!-- Service 1 -->
+    <div class="service-panel">
+      <div class="service-head">
+        <h3>High-Converting Landing Page</h3>
+        <span class="starting">Starts at ₹9,999</span>
+      </div>
+      <p class="service-desc">
+        Perfect for ads, promotions, launches, and lead capture. Designed to guide visitors toward one clear action.
+      </p>
+      <ul class="service-points">
+        <li>Strategy & discovery session</li>
+        <li>Conversion-focused layout & copy structure</li>
+        <li>Mobile-first responsive design</li>
+        <li>Unlimited revisions (fixed period)</li>
+        <li>Analytics & basic tracking setup</li>
+        <li>48-hour response & updates</li>
+      </ul>
+    </div>
+
+    <!-- Service 2 (Featured) -->
+    <div class="service-panel featured">
+      <div class="service-head">
+        <h3>Professional Business Website</h3>
+        <span class="starting">Starts at ₹24,999</span>
+      </div>
+      <p class="service-desc">
+        A complete online presence for schools, hospitals, institutes, hotels, startups, and growing local businesses.
+      </p>
+      <ul class="service-points">
+        <li>Strategy & site structure planning</li>
+        <li>5–10 professionally designed pages</li>
+        <li>Conversion-oriented copy placement</li>
+        <li>HTML, CSS, JS / WordPress / Shopify</li>
+        <li>Fast loading & mobile optimized</li>
+        <li>Google Maps, WhatsApp & Call buttons</li>
+        <li>Free hosting & deployment support</li>
+      </ul>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="service-panel">
+      <div class="service-head">
+        <h3>Growth Website System</h3>
+        <span class="starting">Starts at ₹49,999</span>
+      </div>
+      <p class="service-desc">
+        Built for businesses that want long-term growth, higher conversions, and scalable digital infrastructure.
+      </p>
+      <ul class="service-points">
+        <li>Deep business & audience analysis</li>
+        <li>Custom page flow for conversions</li>
+        <li>Advanced UI & interaction design</li>
+        <li>React / Node based scalable setup</li>
+        <li>Lead tracking & performance insights</li>
+        <li>Priority support & faster turnaround</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="pricing-final-cta">
+    <h3>Still unsure which setup is right for you?</h3>
+    <p>
+      Most businesses lose money not because of ads, but because their website isn’t doing its job.
+      Let’s identify what’s blocking your growth and fix it.
+    </p>
+    <a href="#" class="primary-cta">Get Free Growth Audit</a>
+    <span class="cta-trust">No pressure • Clear roadmap • Actionable insights</span>
+  </div>
+</section>
+
+<!-- ================= PRICING END ================= -->
+
 
 
 
