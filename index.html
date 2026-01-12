@@ -975,8 +975,103 @@ body {
   }
   .step-dot { left: -20px !important; right: auto !important; }
 }
-</style>
 <!-- ================= HOW WE WORK SECTION END ================= -->
+
+
+
+
+/* ================= WHY YOU'LL LOVE US SECTION CSS START ================= */
+.love-us-section {
+  background: #0d0d0d;
+  padding: 80px 20px;
+}
+
+.love-us-section .section-head {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.love-us-section .section-head h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+.love-us-section .section-head h2 span {
+  background: linear-gradient(90deg, #FC653A, #ff8a65);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.love-us-section .section-head p {
+  color: #b5b5b5;
+  margin-top: 12px;
+  font-size: 1rem;
+}
+
+.love-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Premium Card */
+.love-card {
+  background: rgba(22,22,22,0.85);
+  border-radius: 14px;
+  padding: 30px 20px;
+  width: 280px;
+  text-align: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border 0.35s ease;
+  position: relative;
+  border: 1px solid rgba(252,101,58,0.15);
+  backdrop-filter: blur(8px);
+}
+.love-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 28px 60px rgba(252,101,58,0.35);
+  border: 1px solid rgba(252,101,58,0.5);
+}
+
+/* Icon */
+.love-card .icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card Heading */
+.love-card h3 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+/* Card Text */
+.love-card p {
+  color: #b5b5b5;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .love-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .love-card {
+    width: calc(100% - 32px);
+    padding: 24px;
+  }
+}
+@media (max-width: 480px) {
+  .love-card {
+    padding: 20px;
+  }
+}
+<!-- ================= WHY YOU'LL LOVE US SECTION CSS END ================= -->
+
 
 </style>
 </head>
@@ -1289,6 +1384,87 @@ body {
 </section>
 <!-- ================= HOW WE WORK SECTION END ================= -->
 
+
+<!-- ================= WHY YOU'LL LOVE US SECTION START ================= -->
+<section class="love-us-section">
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Why You’ll <span>Love</span> SparkEdge</h2>
+      <p>Premium websites, branding & digital assets designed to grow your business — fast, professional, and results-driven.</p>
+    </div>
+
+    <div class="love-cards">
+
+      <!-- Card 1 -->
+      <div class="love-card">
+        <div class="icon">
+          <!-- Growth Chart SVG -->
+          <svg width="40" height="40" fill="none" stroke="#FC653A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 28 14 16 24 24 36 8"></polyline>
+            <polyline points="4 36 36 36"></polyline>
+          </svg>
+        </div>
+        <h3>Built to Convert</h3>
+        <p>Every website and digital asset is designed to turn visitors into leads — not just look pretty.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="love-card">
+        <div class="icon">
+          <!-- Graduation Cap SVG -->
+          <svg width="40" height="40" fill="none" stroke="#FC653A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 16 L20 4 L38 16 L20 28 Z"></path>
+            <line x1="20" y1="28" x2="20" y2="36"></line>
+          </svg>
+        </div>
+        <h3>Expert IIT Team</h3>
+        <p>Alumni and current students of IIT bring clean systems, precision, and problem-solving to every project.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="love-card">
+        <div class="icon">
+          <!-- Gear SVG -->
+          <svg width="40" height="40" fill="none" stroke="#FC653A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="20" cy="20" r="6"></circle>
+            <path d="M20 2 L20 8 M20 32 L20 38 M2 20 L8 20 M32 20 L38 20 M5 5 L10 10 M30 30 L35 35 M5 35 L10 30 M30 10 L35 5"></path>
+          </svg>
+        </div>
+        <h3>Custom Solutions</h3>
+        <p>From schools to startups, we adapt every solution to your unique goals and audience.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="love-card">
+        <div class="icon">
+          <!-- Lightning / Clock SVG -->
+          <svg width="40" height="40" fill="none" stroke="#FC653A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 28 2 18 18 28 18 12 38 18 22 8 22"></polygon>
+          </svg>
+        </div>
+        <h3>Quick Turnarounds</h3>
+        <p>We deliver fast with clear updates every 24–48 hours — no waiting, no delays.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="love-card">
+        <div class="icon">
+          <!-- Layers / Building SVG -->
+          <svg width="40" height="40" fill="none" stroke="#FC653A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="12" width="32" height="24"></rect>
+            <rect x="8" y="4" width="24" height="8"></rect>
+          </svg>
+        </div>
+        <h3>All-in-One Team</h3>
+        <p>Branding, websites, and digital assets — one team, zero hassle.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY YOU'LL LOVE US SECTION END ================= -->
 
 
 
