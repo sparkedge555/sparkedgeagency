@@ -1086,6 +1086,113 @@ body {
 <!-- ================= WHY YOU'LL LOVE US SECTION CSS END ================= -->
 
 
+
+/* ================= TESTIMONIAL SECTION CSS START ================= */
+
+
+/* Smooth gap between Why You’ll Love SparkEdge and Testimonial Section */
+.love-us-section {
+  padding-bottom: 80px; /* space at bottom of Why You’ll Love section */
+}
+
+.testimonial-section {
+  padding-top: 80px; /* space at top of testimonial section */
+}
+
+
+
+/////
+
+.love-us-section::after {
+  content: '';
+  display: block;
+  height: 60px;
+  background: linear-gradient(to bottom, #16161600, #0d0d0d);
+}
+
+//////
+
+
+
+
+.testimonial-section {
+  background: #0d0d0d;
+  padding: 80px 20px;
+}
+
+.testimonial-section .section-head {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.testimonial-section .section-head h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+.testimonial-section .section-head p {
+  color: #b5b5b5;
+  margin-top: 12px;
+  font-size: 1rem;
+}
+
+/* Testimonial Line */
+.testimonial-line {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+/* Track */
+.testimonial-track {
+  display: flex;
+  gap: 24px;
+  white-space: nowrap;
+}
+
+/* Individual Card */
+.testimonial-card {
+  background: rgba(22,22,22,0.85);
+  border-radius: 16px;
+  padding: 28px 20px;
+  min-width: 280px;
+  max-width: 320px;
+  text-align: left;
+  color: #b5b5b5;
+  border: 1px solid rgba(252,101,58,0.1);
+  backdrop-filter: blur(6px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.testimonial-card p {
+  overflow-wrap: break-word; /* prevents text from overflowing */
+  word-break: break-word;     /* ensures long words wrap */
+  white-space: normal;        /* allows multiline inside card */
+  line-height: 1.6;
+}
+
+.testimonial-card strong {
+  display: block;
+  margin-top: 12px;
+  color: #fff;
+}
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 60px rgba(252,101,58,0.35);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonial-track {
+    gap: 16px;
+  }
+  .testimonial-card {
+    min-width: calc(100% - 32px);
+  }
+}
+/* ================= TESTIMONIAL SECTION CSS END ================= */
+
+
+
 </style>
 </head>
 
@@ -1480,6 +1587,60 @@ body {
 <!-- ================= WHY YOU'LL LOVE US SECTION END ================= -->
 
 
+<!-- ================= TESTIMONIAL SECTION START ================= -->
+<section class="testimonial-section">
+  <div class="container">
+
+    <!-- Section Heading -->
+    <div class="section-head">
+      <h2>What Our Clients Say</h2>
+      <p>Trusted by growing institutions & businesses across India. See what they feel about working with SparkEdge.</p>
+    </div>
+
+    <!-- First Line of Testimonials (Right → Left) -->
+    <div class="testimonial-line">
+      <div class="testimonial-track">
+        <div class="testimonial-card">
+          <p>"SparkEdge built our coaching website in record time. The process was smooth, and the result exceeded expectations."</p>
+          <strong>— Raghav, Ret Institute</strong>
+        </div>
+        <div class="testimonial-card">
+          <p>"Their team is professional, responsive, and really understands your business. Highly recommend for small businesses."</p>
+          <strong>— Priya, Bright Future Coaching</strong>
+        </div>
+        <div class="testimonial-card">
+          <p>"We saw a huge increase in inquiries after they designed our hospital website. Truly premium service."</p>
+          <strong>— Dr. Sharma, Care Plus Hospital</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Line of Testimonials (Left → Right) -->
+    <div class="testimonial-line">
+      <div class="testimonial-track">
+        <div class="testimonial-card">
+          <p>"I loved how they guided us at every step. From branding to final website, everything was seamless."</p>
+          <strong>— Neha, Medona English School</strong>
+        </div>
+        <div class="testimonial-card">
+          <p>"The SparkEdge team is very detail-oriented and professional. Our startup website looks amazing!"</p>
+          <strong>— Aman, StartUpX</strong>
+        </div>
+        <div class="testimonial-card">
+          <p>"Quick, reliable, and creative. The entire process was stress-free, and results are excellent."</p>
+          <strong>— Kavita, DRCBPVMP Clinic</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= TESTIMONIAL SECTION END ================= -->
+
+
+
+
 
 
   
@@ -1544,6 +1705,47 @@ body {
   }, 2500);
 </script>
 <!-- ================= HERO SECTION JS END ================= -->
+
+
+  
+
+/* ================= TESTIMONIAL MARQUEE JS START ================= */
+ <script>  
+document.querySelectorAll('.testimonial-line').forEach((line, index) => {
+  const track = line.querySelector('.testimonial-track');
+  const speed = 0.5; // pixels per frame
+  let paused = false;
+
+  // Duplicate content 3x for seamless infinite scroll
+  const original = track.innerHTML;
+  track.innerHTML = original + original + original;
+
+  // Direction: odd lines → rtl, even lines → ltr
+  const direction = index % 2 === 0 ? 1 : -1; 
+  let pos = 0;
+
+  function animate() {
+    if (!paused) {
+      pos += speed * direction;
+
+      // Reset smoothly
+      if (direction === 1 && pos >= track.scrollWidth / 3) pos = 0;
+      if (direction === -1 && pos <= -track.scrollWidth / 3) pos = 0;
+
+      track.style.transform = `translateX(${-pos}px)`;
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Pause on hover
+  line.addEventListener('mouseenter', () => paused = true);
+  line.addEventListener('mouseleave', () => paused = false);
+});
+
+</script>
+<!-- ================= TESTIMONIAL SECTION END ================= -->
+
 
 </body>
 </html>
