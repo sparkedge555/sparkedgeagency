@@ -678,6 +678,151 @@ body {
 }
 
 /* ================= TRUST SECTION CSS END ================= */
+
+
+/* ================= PRIMARY SERVICES SECTION CSS ================= */
+
+.services-section {
+  background: #0d0d0d;
+  padding: clamp(64px, 8vw, 100px) 24px;
+}
+
+.services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 56px;
+}
+
+.services-header h2 {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.services-header h2 span {
+  color: #FC653A;
+}
+
+.services-header p {
+  margin-top: 14px;
+  font-size: 1rem;
+  color: #b5b5b5;
+  line-height: 1.7;
+}
+
+/* Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Cards */
+.service-card {
+  background: linear-gradient(180deg, #161616, #1f1f1f);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 18px;
+  padding: 28px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.service-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: #b5b5b5;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.service-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 22px;
+}
+
+.service-card ul li {
+  font-size: 0.9rem;
+  color: #d1d1d1;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 16px;
+}
+
+.service-card ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #FC653A;
+}
+
+/* Featured Card */
+.service-card.featured {
+  border-color: rgba(252,101,58,0.6);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Button */
+.service-btn {
+  display: inline-block;
+  padding: 12px 22px;
+  background: transparent;
+  border: 1px solid rgba(252,101,58,0.6);
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.service-btn:hover {
+  background: #FC653A;
+  color: #0d0d0d;
+  box-shadow: 0 10px 30px rgba(252,101,58,0.45);
+  transform: translateY(-2px);
+}
+
+/* Hover */
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(252,101,58,0.9);
+}
+
+/* Section CTA */
+.services-cta {
+  margin-top: 56px;
+  text-align: center;
+}
+
+.services-cta p {
+  color: #b5b5b5;
+  margin-bottom: 14px;
+}
+
+/* 🔧 Center align services CTA properly */
+.services-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.services-cta .cta-btn {
+  margin-top: 6px;
+}
+
+
+/* ================= END ================= */
     
 </style>
 </head>
@@ -826,6 +971,107 @@ body {
   </div>
 </section>
 <!-- ================= TRUST SECTION END ================= -->
+
+
+<!-- ================= PRIMARY SERVICES SECTION START ================= -->
+<section class="services-section" id="solutions">
+  <div class="services-container">
+
+    <div class="services-header">
+      <h2>
+        Our <span>Core Solutions</span>
+      </h2>
+      <p>
+        We design premium static websites and digital assets that help institutions
+        build trust, generate enquiries and grow with clarity.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- Service 1 (Primary) -->
+      <div class="service-card featured">
+        <h3>Premium Static Websites</h3>
+        <p>
+          High-performance static websites built for coaching institutes, hospitals,
+          schools, hotels, startups and growing businesses.
+        </p>
+        <ul>
+          <li>Fast, secure & SEO-ready</li>
+          <li>Trust & credibility focused</li>
+          <li>Built for long-term use</li>
+        </ul>
+        <a href="/services.html" class="service-btn">
+          View Solution Details
+        </a>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <h3>Lead Generation Websites</h3>
+        <p>
+          Websites designed with one goal — convert visitors into calls,
+          WhatsApp messages and enquiries.
+        </p>
+        <ul>
+          <li>Conversion-focused layouts</li>
+          <li>Strong CTAs & flow</li>
+          <li>Mobile-first experience</li>
+        </ul>
+        <a href="/services.html" class="service-btn">
+          View Solution Details
+        </a>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <h3>Digital Presence for Businesses</h3>
+        <p>
+          Clean, premium websites for shops, startups and local businesses
+          that want a strong online presence.
+        </p>
+        <ul>
+          <li>Professional brand image</li>
+          <li>Service & offer showcase</li>
+          <li>Easy contact & visibility</li>
+        </ul>
+        <a href="/services.html" class="service-btn">
+          View Solution Details
+        </a>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="service-card">
+        <h3>Books, Notes & Ebook Design</h3>
+        <p>
+          Professionally designed study material, ebooks and books for
+          institutes, educators and creators.
+        </p>
+        <ul>
+          <li>Clean layouts & outlines</li>
+          <li>Print & digital ready</li>
+          <li>Easy to read & distribute</li>
+        </ul>
+        <a href="/services.html" class="service-btn">
+          View Solution Details
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Section CTA -->
+    <div class="services-cta">
+      <p>Not sure which solution fits your business?</p>
+      <a href="https://wa.me/919142450715" class="cta-btn">
+        Get Free Consultation
+      </a>
+    </div>
+
+  </div>
+</section>
+<!-- ================= PRIMARY SERVICES SECTION END ================= -->
+
+
 
 
 
