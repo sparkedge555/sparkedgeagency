@@ -1151,6 +1151,7 @@ body {
 }
 
 /* Individual Card */
+/* Individual Card */
 .testimonial-card {
   background: rgba(22,22,22,0.85);
   border-radius: 16px;
@@ -1162,18 +1163,26 @@ body {
   border: 1px solid rgba(252,101,58,0.1);
   backdrop-filter: blur(6px);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
 }
 .testimonial-card p {
   overflow-wrap: break-word; /* prevents text from overflowing */
   word-break: break-word;     /* ensures long words wrap */
   white-space: normal;        /* allows multiline inside card */
   line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
 }
 
 .testimonial-card strong {
   display: block;
   margin-top: 12px;
   color: #fff;
+  font-size: 0.85rem;        /* 🔥 smaller */
+  line-height: 1.4;
+  display: block;
+  color: #ffffff;
+  opacity: 0.9;
 }
 .testimonial-card:hover {
   transform: translateY(-8px);
@@ -1189,6 +1198,13 @@ body {
     min-width: calc(100% - 32px);
   }
 }
+
+    @media (max-width: 480px) {
+  .testimonial-card {
+    padding: 22px 18px;
+  }
+}
+
 /* ================= TESTIMONIAL SECTION CSS END ================= */
 
 
