@@ -1627,6 +1627,149 @@ body {
 
 /* ================= BOOKING SECTION end ================= */
 
+    /* ================= FAQ SECTION ================= */
+
+.faq-section {
+  background: #0d0d0d;
+  padding: 80px 8% 70px;
+}
+
+.faq-inner {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+/* Heading */
+.faq-title {
+  font-size: clamp(1.9rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.faq-title span {
+  color: #FC653A;
+}
+
+/* Sub */
+.faq-sub {
+  color: #b5b5b5;
+  max-width: 620px;
+  margin: 0 auto 40px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* List */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+/* Card */
+.faq-item {
+  background: linear-gradient(180deg, #161616, #1f1f1f);
+  border-radius: 14px;
+  border: 1px solid rgba(252,101,58,0.12);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  overflow: hidden;
+  transition: border 0.3s ease;
+}
+
+.faq-item.active {
+  border-color: rgba(252,101,58,0.35);
+}
+
+/* Question */
+.faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 18px 20px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+/* + / - icon */
+.faq-toggle {
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+
+.faq-toggle::before,
+.faq-toggle::after {
+  content: "";
+  position: absolute;
+  background: #FC653A;
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+.faq-toggle::before {
+  width: 100%;
+  height: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.faq-toggle::after {
+  width: 2px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.faq-item.active .faq-toggle::after {
+  opacity: 0;
+  transform: translateX(-50%) scaleY(0);
+}
+
+/* Answer */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  transition: max-height 0.6s cubic-bezier(0.4,0,0.2,1),
+              padding 0.4s ease;
+}
+
+.faq-answer p {
+  color: #b5b5b5;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 220px;
+  padding: 0 20px 18px;
+}
+
+.faq-item.active .faq-answer p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 60px 6% 55px;
+  }
+}
+<!-- ================= FAQ SECTION CSS END ================= -->
+
 </style>
 </head>
 
@@ -2248,6 +2391,156 @@ Cal.ns["30min"]("inline", {
 
   <!-- ================= BOOKING SECTION end ================= -->
 
+
+  <!-- ================= FAQ SECTION ================= -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+
+    <h2 class="faq-title">
+      Common <span>Questions</span>
+    </h2>
+
+    <p class="faq-sub">
+      Clear answers to help you decide if SparkEdge is the right growth partner.
+    </p>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you handle everything from branding to website and e-commerce development?
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Yes. We handle branding, UI/UX, websites, landing pages, and e-commerce builds.
+            Everything works together as a single growth system.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What’s your process for delivering a project?
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Strategy → Design → Development → Launch.
+            You get clarity, feedback loops, and transparency at every step.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          How long does a typical project take?
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Most projects take 7–14 days depending on scope.
+            Speed matters, but conversions matter more.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you provide marketing services as well?
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            We focus on conversion foundations and also guide funnels, messaging,
+            and optimization strategies aligned with your growth goals.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you build MVPs or just full-scale products?
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Both. MVPs for fast validation and full-scale products for long-term growth.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you provide post-launch support?
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Yes. We provide post-launch support for fixes, performance,
+            and early-stage optimizations.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What if I need ongoing updates and changes?
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            We offer flexible ongoing support plans for updates,
+            improvements, and feature additions.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you work with startups or only established businesses?
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            We work with startups, founders, and growing brands.
+            Growth mindset matters more than company size.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What platforms do you build on?
+          <span class="faq-toggle"></span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            We build on modern, scalable platforms — custom stacks, CMS,
+            and frameworks based on your business needs.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll(".faq-question").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = btn.closest(".faq-item");
+
+    document.querySelectorAll(".faq-item").forEach(el => {
+      if (el !== item) el.classList.remove("active");
+    });
+
+    item.classList.toggle("active");
+  });
+});
+</script>
+
+ <!-- ================= FAQ SECTION end ================= -->
   
 
 <!-- NAVBAR JS START -->
