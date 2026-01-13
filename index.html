@@ -1770,6 +1770,155 @@ body {
 }
 <!-- ================= FAQ SECTION CSS END ================= -->
 
+    /* ================= FOOTER STYLES ================= */
+.footer {
+  background: #0a0a0a;
+  color: #f0f0f0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 100px 20px 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Premium Horizontal Line */
+.footer-hr {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #FC653A, #FF8C42);
+  margin: 0 auto 50px;
+  border-radius: 2px;
+  animation: lineGrow 1s ease forwards;
+}
+
+/* CTA Section */
+.footer-cta {
+  margin-bottom: 60px;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.footer-cta h2 {
+  font-size: 2.5rem;
+  color: #FC653A;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #FC653A, #FF8C42);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-cta p {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+.cta-button {
+  background: #FC653A;
+  color: #fff;
+  padding: 15px 35px;
+  border-radius: 12px; /* same corner as main CTA */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: 0.4s all;
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 0 5px 20px rgba(252, 101, 58, 0.4);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(252, 101, 58, 0.5);
+  background: #FF8C42;
+}
+
+/* Single-Line Links */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  font-size: 1rem;
+  color: #ccc;
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -3px;
+  background: #FC653A;
+  transition: 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-link i {
+  margin-right: 6px;
+  color: #FC653A;
+  transition: 0.3s all;
+}
+
+.footer-link:hover i {
+  transform: scale(1.2);
+}
+
+/* Credit Line */
+.footer-credit {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #999;
+  border-top: 1px solid #222;
+  padding-top: 25px;
+}
+
+.footer-credit .heart {
+  color: #FC653A;
+  animation: heartbeat 1.5s infinite;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.2); }
+}
+
+@keyframes lineGrow {
+  0% { width: 0; }
+  100% { width: 60px; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 25px;
+  }
+}
+  /* ================= FOOTER STYLES END ================= */
 </style>
 </head>
 
@@ -2541,7 +2690,36 @@ document.querySelectorAll(".faq-question").forEach(btn => {
 </script>
 
  <!-- ================= FAQ SECTION end ================= -->
-  
+
+  <!-- ================= PREMIUM FOOTER SECTION START ================= -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <!-- Premium Horizontal Line -->
+    <div class="footer-hr"></div>
+
+    <!-- CTA Section -->
+    <div class="footer-cta">
+      <h2>Ready to Transform Your Brand?</h2>
+      <p>Take the leap with SparkEdge. Let’s craft something extraordinary that grows your business.</p>
+      <a href="#contact" class="cta-button">Start Your Project</a>
+    </div>
+
+    <!-- Single-Line Links Section -->
+    <div class="footer-links">
+      <a href="#services" class="footer-link">Services</a>
+      <a href="#contact" class="footer-link">Contact</a>
+      <a href="https://instagram.com/sparkedge555" target="_blank" class="footer-link"><i class="fab fa-instagram"></i> Instagram</a>
+    </div>
+
+    <!-- Credit Line -->
+    <div class="footer-credit">
+      <p>© 2026 <strong>SparkEdge</strong> — Crafted with <span class="heart">❤️</span> by <strong>Raunak Karn</strong></p>
+    </div>
+
+  </div>
+</footer>
+  <!-- FOOTER END -->
 
 <!-- NAVBAR JS START -->
 <script>
