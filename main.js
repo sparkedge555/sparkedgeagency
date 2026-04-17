@@ -86,15 +86,37 @@ function initLogoSpark() {
 
 /* ── Hero word rotate ── */
 function initWordRotate() {
-  const words = document.querySelectorAll('.word');
-  if (!words.length) return;
-  let current = 0;
+  const track = document.getElementById("wordTrack");
+  const words = document.querySelectorAll(".word");
+
+  if (!track || !words.length) return;
+
+  let index = 0;
+  const step = 1.2; // matches your CSS height
+  const duration = 2000; // delay between transitions
+  const transitionTime = 700; // must match CSS feel
+
+  // ensure correct starting state (no jump on load)
+  track.style.transform = "translateY(0)";
+  track.style.transition = "none";
 
   setInterval(() => {
-    words[current].classList.remove('active');
-    current = (current + 1) % words.length;
-    words[current].classList.add('active');
-  }, 2400);
+    index++;
+
+    // apply smooth transition
+    track.style.transition = "transform 0.7s cubic-bezier(0.22,1,0.36,1)";
+    track.style.transform = `translateY(-${index * step}em)`;
+
+    // seamless loop reset
+    if (index === words.length - 1) {
+      setTimeout(() => {
+        track.style.transition = "none";
+        track.style.transform = "translateY(0)";
+        index = 0;
+      }, transitionTime);
+    }
+
+  }, duration);
 }
 
 /* ── Counter animation ── */
