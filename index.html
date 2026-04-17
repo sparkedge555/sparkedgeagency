@@ -21,7 +21,7 @@
     @keyframes particle-rise { 0% { transform: translateY(100vh) translateX(0); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.3; } 100% { transform: translateY(-100px) translateX(30px); opacity: 0; } }
 
     /* ── Fixed Word Rotate ── */
-   .word-rotate {
+  .word-rotate {
   display: inline-block;
   position: relative;
   overflow: hidden;
@@ -32,7 +32,7 @@
 .word-track {
   display: flex;
   flex-direction: column;
-  transition: transform 0.65s cubic-bezier(0.22,1,0.36,1);
+  transform: translateY(0); /* prevent initial jump */
 }
 
 .word {
@@ -41,6 +41,9 @@
   line-height: 1.2em;
   height: 1.2em;
 }
+
+     /* ISI KA */
+    
 
     /* ── Hero Title ── */
     .hero-title { font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 800; line-height: 1.15; margin-bottom: 26px; animation: fadeSlideUp 0.8s 0.1s ease both; }
@@ -497,27 +500,36 @@
 
 
   // word rotate
+<script>
 const track = document.getElementById("wordTrack");
 const words = document.querySelectorAll(".word");
+
 let index = 0;
+const duration = 2000; // time between changes
 
-setInterval(() => {
-  index++;
-  track.style.transform = `translateY(-${index * 1.2}em)`;
+// start immediately (no delay on load)
+function startRotation() {
+  setInterval(() => {
+    index++;
 
-  // loop reset
-  if (index === words.length - 1) {
-    setTimeout(() => {
-      track.style.transition = "none";
-      track.style.transform = "translateY(0)";
-      index = 0;
+    track.style.transition = "transform 0.7s cubic-bezier(0.22,1,0.36,1)";
+    track.style.transform = `translateY(-${index * 1.2}em)`;
+
+    // smooth loop reset (invisible)
+    if (index === words.length - 1) {
       setTimeout(() => {
-        track.style.transition = "transform 0.65s cubic-bezier(0.22,1,0.36,1)";
-      }, 50);
-    }, 700);
-  }
-}, 2000);
+        track.style.transition = "none";
+        track.style.transform = "translateY(0)";
+        index = 0;
+      }, 700); // match transition time
+    }
 
+  }, duration);
+}
+
+// run instantly when DOM is ready
+document.addEventListener("DOMContentLoaded", startRotation);
+</script>
 
 
 
