@@ -92,22 +92,20 @@ function initWordRotate() {
   if (!track || !words.length) return;
 
   let index = 0;
-  const step = 1.2; // matches your CSS height
-  const duration = 2000; // delay between transitions
-  const transitionTime = 700; // must match CSS feel
+  const step = 1.2;
+  const intervalTime = 500; // 🔥 0.5 sec
+  const transitionTime = 250; // fast animation
 
-  // ensure correct starting state (no jump on load)
   track.style.transform = "translateY(0)";
   track.style.transition = "none";
 
   setInterval(() => {
     index++;
 
-    // apply smooth transition
-    track.style.transition = "transform 0.7s cubic-bezier(0.22,1,0.36,1)";
+    track.style.transition = "transform 0.25s ease-out";
     track.style.transform = `translateY(-${index * step}em)`;
 
-    // seamless loop reset
+    // smooth loop reset
     if (index === words.length - 1) {
       setTimeout(() => {
         track.style.transition = "none";
@@ -116,7 +114,7 @@ function initWordRotate() {
       }, transitionTime);
     }
 
-  }, duration);
+  }, intervalTime);
 }
 
 /* ── Counter animation ── */
