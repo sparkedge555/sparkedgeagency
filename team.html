@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Team | SparkEdge — The People Behind Your Growth</title>
+  <meta name="description" content="Meet the SparkEdge team — IIT-ecosystem builders, designers and strategists passionate about building high-conversion digital experiences for Indian businesses." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Team page specific styles ── */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 60px;
+    }
+
+    .member-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(252,101,58,0.08), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .member-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-8px);
+      box-shadow: 0 28px 70px rgba(0,0,0,0.55);
+    }
+
+    .member-card:hover::before { opacity: 1; }
+
+    .member-photo-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--card2);
+    }
+
+    .member-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+
+    .member-card:hover .member-photo-wrap img {
+      transform: scale(1.04);
+    }
+
+    /* Placeholder avatar when no image */
+    .member-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #181818, #111);
+      font-family: 'Syne', sans-serif;
+      font-size: 5rem;
+      font-weight: 800;
+      color: var(--primary);
+      opacity: 0.25;
+    }
+
+    .member-photo-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.8), transparent);
+      padding: 20px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .member-social-btn {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .member-social-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .member-info {
+      padding: 28px 30px 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .member-designation {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-dim);
+      border: 1px solid rgba(252,101,58,0.25);
+      border-radius: 50px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .member-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .member-role {
+      font-size: 0.88rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .member-bio {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .member-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .member-tag {
+      padding: 5px 13px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .member-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      background: var(--primary-dim);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-sm);
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .member-cta:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* Values section */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .value-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.35s;
+    }
+
+    .value-item:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-5px);
+    }
+
+    .value-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .value-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .value-item p {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    /* Booking section */
+    .team-booking {
+      background: var(--bg2);
+      padding: 100px 8%;
+    }
+
+    #team-cal-inline { width: 100%; height: 650px; overflow: scroll; }
+
+    /* Photo guide note */
+    .photo-guide {
+      background: var(--card2);
+      border: 1px dashed var(--border-hover);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin-bottom: 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .photo-guide i { color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+
+    @media (max-width: 768px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav class="navbar">
+  <div class="logo" id="logo">Spark<span>Edge</span><span class="spark-container"></span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="team.html" class="active">Team</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20want%20a%20free%20consultation." class="nav-cta" target="_blank">Get Started <i class="fa-brands fa-whatsapp"></i></a>
+  <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div style="position:relative;z-index:2;">
+    <div class="section-label" style="justify-content:center;"><i class="fa-solid fa-users"></i> Our People</div>
+    <h1 class="section-title" style="text-align:center;margin-top:14px;">Meet the <span>Team</span></h1>
+    <p style="color:var(--muted);max-width:560px;margin:16px auto 0;font-size:1.05rem;text-align:center;">
+      We're a focused team of IIT-ecosystem builders, designers and strategists who are genuinely obsessed with helping Indian businesses grow online.
+    </p>
+  </div>
+</div>
+
+<!-- TEAM MEMBERS -->
+<section>
+  <div class="section-label reveal"><i class="fa-solid fa-id-badge"></i> The Founders</div>
+  <h2 class="section-title reveal">The People Who <span>Build Your Website</span></h2>
+  <p class="section-sub reveal">Every project is personally handled by our founding team — no outsourcing, no middlemen.</p>
+
+  <!-- PHOTO GUIDE for team members -->
+  <div class="photo-guide reveal" style="margin-bottom:40px;">
+    <i class="fa-solid fa-circle-info"></i>
+    <div>
+      <strong style="color:var(--text);display:block;margin-bottom:4px;">📸 How to add your photo:</strong>
+      Place your headshot images in a <code style="background:var(--card);padding:2px 6px;border-radius:4px;font-size:0.8rem;">team-photos/</code> folder.
+      Recommended: square or 4:3 ratio, minimum 600×600px, JPG format under 200KB. Name them <code style="background:var(--card);padding:2px 6px;border-radius:4px;font-size:0.8rem;">raunak-karn.jpg</code>, <code style="background:var(--card);padding:2px 6px;border-radius:4px;font-size:0.8rem;">rudram-jha.jpg</code>, <code style="background:var(--card);padding:2px 6px;border-radius:4px;font-size:0.8rem;">raunak-kumar.jpg</code>.
+      Then replace <code style="background:var(--card);padding:2px 6px;border-radius:4px;font-size:0.8rem;">src="team-photos/raunak-karn.jpg"</code> in the img tags below with your actual paths.
+    </div>
+  </div>
+
+  <div class="team-grid">
+
+    <!-- MEMBER 1: RAUNAK KARN -->
+    <div class="member-card reveal">
+      <div class="member-photo-wrap">
+        <!-- Replace src with actual photo: team-photos/raunak-karn.jpg -->
+        <!-- <img src="team-photos/raunak-karn.jpg" alt="Raunak Karn - Co-Founder SparkEdge"> -->
+        <div class="member-photo-placeholder">RK</div>
+        <div class="member-photo-overlay">
+          <a href="https://wa.me/919142450715" target="_blank" class="member-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:sparkedge555@gmail.com" class="member-social-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="https://github.com/sparkedge-agency" target="_blank" class="member-social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="member-info">
+        <div class="member-designation"><i class="fa-solid fa-bolt"></i> Co-Founder</div>
+        <div class="member-name">Raunak Karn</div>
+        <div class="member-role">Lead Designer & Brand Strategist</div>
+        <p class="member-bio">
+          Raunak leads all design and brand strategy at SparkEdge. With a sharp eye for aesthetics and a deep understanding of conversion psychology, he crafts digital experiences that don't just look premium — they perform. He specializes in turning complex business goals into simple, beautiful interfaces that make visitors take action.
+        </p>
+        <div class="member-tags">
+          <span class="member-tag">UI/UX Design</span>
+          <span class="member-tag">Brand Strategy</span>
+          <span class="member-tag">Conversion Design</span>
+          <span class="member-tag">Visual Identity</span>
+        </div>
+        <a href="https://wa.me/919142450715?text=Hi%20Raunak!%20I%20saw%20your%20profile%20on%20SparkEdge." target="_blank" class="member-cta">
+          <i class="fa-brands fa-whatsapp"></i> Connect on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- MEMBER 2: RUDRAM JHA -->
+    <div class="member-card reveal reveal-delay-1">
+      <div class="member-photo-wrap">
+        <!-- Replace src with actual photo: team-photos/rudram-jha.jpg -->
+        <!-- <img src="team-photos/rudram-jha.jpg" alt="Rudram Jha - Co-Founder SparkEdge"> -->
+        <div class="member-photo-placeholder">RJ</div>
+        <div class="member-photo-overlay">
+          <a href="https://wa.me/919142450715" target="_blank" class="member-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:sparkedge555@gmail.com" class="member-social-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="https://github.com/sparkedge-agency" target="_blank" class="member-social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="member-info">
+        <div class="member-designation"><i class="fa-solid fa-code"></i> Co-Founder</div>
+        <div class="member-name">Rudram Jha</div>
+        <div class="member-role">Lead Developer & Technical Architect</div>
+        <p class="member-bio">
+          Rudram is the technical backbone of SparkEdge. He engineers every website from the ground up — writing clean, lightweight HTML/CSS/JS that loads in under 2 seconds and scores 95+ on Google Lighthouse. From GitHub Pages deployment to SEO technical setup, he ensures every site we ship is production-grade from day one.
+        </p>
+        <div class="member-tags">
+          <span class="member-tag">Frontend Dev</span>
+          <span class="member-tag">Technical SEO</span>
+          <span class="member-tag">Performance Optimization</span>
+          <span class="member-tag">GitHub Pages</span>
+        </div>
+        <a href="https://wa.me/919142450715?text=Hi%20Rudram!%20I%20saw%20your%20profile%20on%20SparkEdge." target="_blank" class="member-cta">
+          <i class="fa-brands fa-whatsapp"></i> Connect on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- MEMBER 3: RAUNAK KUMAR -->
+    <div class="member-card reveal reveal-delay-2">
+      <div class="member-photo-wrap">
+        <!-- Replace src with actual photo: team-photos/raunak-kumar.jpg -->
+        <!-- <img src="team-photos/raunak-kumar.jpg" alt="Raunak Kumar - Co-Founder SparkEdge"> -->
+        <div class="member-photo-placeholder" style="opacity:0.25;">RK</div>
+        <div class="member-photo-overlay">
+          <a href="https://wa.me/919142450715" target="_blank" class="member-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:sparkedge555@gmail.com" class="member-social-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
+          <a href="https://github.com/sparkedge-agency" target="_blank" class="member-social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+      <div class="member-info">
+        <div class="member-designation"><i class="fa-solid fa-chart-line"></i> Co-Founder</div>
+        <div class="member-name">Raunak Kumar</div>
+        <div class="member-role">Growth Strategist & Client Success</div>
+        <p class="member-bio">
+          Raunak Kumar drives SparkEdge's growth strategy and ensures every client gets measurable results. With a deep focus on business outcomes, he bridges the gap between design and business reality — ensuring websites are built for lead generation, not just aesthetics. He oversees client onboarding, project delivery and long-term growth partnerships.
+        </p>
+        <div class="member-tags">
+          <span class="member-tag">Growth Strategy</span>
+          <span class="member-tag">Client Success</span>
+          <span class="member-tag">Lead Generation</span>
+          <span class="member-tag">Business Development</span>
+        </div>
+        <a href="https://wa.me/919142450715?text=Hi!%20I%20saw%20Raunak%20Kumar's%20profile%20on%20SparkEdge." target="_blank" class="member-cta">
+          <i class="fa-brands fa-whatsapp"></i> Connect on WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- OUR VALUES -->
+<section style="background:var(--bg2);">
+  <div class="section-label reveal"><i class="fa-solid fa-heart"></i> What We Stand For</div>
+  <h2 class="section-title reveal">Our Core <span>Values</span></h2>
+  <p class="section-sub reveal">These aren't slogans. They're how we actually work every day.</p>
+
+  <div class="values-grid">
+    <div class="value-item reveal">
+      <span class="value-icon">⚡</span>
+      <h4>Speed Without Compromise</h4>
+      <p>Fast delivery and fast websites — both matter. We never cut corners to hit deadlines.</p>
+    </div>
+    <div class="value-item reveal reveal-delay-1">
+      <span class="value-icon">🎯</span>
+      <h4>Outcomes Over Outputs</h4>
+      <p>We don't build websites. We build lead generation machines. The result is what counts.</p>
+    </div>
+    <div class="value-item reveal reveal-delay-2">
+      <span class="value-icon">🤝</span>
+      <h4>Radical Transparency</h4>
+      <p>Clear pricing, clear timelines, clear communication. No surprises. Ever.</p>
+    </div>
+    <div class="value-item reveal">
+      <span class="value-icon">🏆</span>
+      <h4>IIT Work Ethic</h4>
+      <p>Structured execution, first-principles thinking and relentless quality standards.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK A CALL WITH THE TEAM -->
+<section class="team-booking">
+  <div class="section-label reveal" style="justify-content:center;"><i class="fa-solid fa-calendar-check"></i> Book a Call</div>
+  <h2 class="section-title reveal" style="text-align:center;">Talk Directly With <span>Our Team</span></h2>
+  <p class="section-sub reveal" style="text-align:center;margin:0 auto 48px;">Pick a slot below. One of our founders will personally be on the call — not a sales rep, not an assistant.</p>
+  <div class="cal-container reveal">
+    <div style="width:100%;height:100%;overflow:scroll" id="team-cal-inline"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div style="position:relative;z-index:2;">
+    <h2 class="reveal">Want to Work With <span style="color:var(--primary);">This Team?</span></h2>
+    <p class="reveal">We have limited spots every month. If you're serious about growing your business online, let's talk today.</p>
+    <div class="reveal" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a class="btn" href="https://wa.me/919142450715?text=Hi%20SparkEdge%20team!%20I'd%20like%20to%20discuss%20a%20project." target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp the Team</a>
+      <a class="btn btn-outline" href="projects.html">See Our Work <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="logo">Spark<span>Edge</span></div><p style="margin-top:14px;color:var(--muted);font-size:0.9rem;">Premium web experiences for coaching institutes, schools, hospitals and growing businesses across India.</p></div>
+    <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Website Dev</a></li><li><a href="services.html">Landing Pages</a></li><li><a href="services.html">E-Books</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/919142450715" target="_blank"><i class="fa-brands fa-whatsapp" style="color:var(--primary);margin-right:6px;"></i>+91 91424 50715</a></li><li><a href="mailto:sparkedge555@gmail.com"><i class="fa-solid fa-envelope" style="color:var(--primary);margin-right:6px;"></i>sparkedge555@gmail.com</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 SparkEdge. All rights reserved.</span><span>Design • Strategy • Conversion</span></div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/919142450715" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "30min", {origin:"https://app.cal.com"});
+  Cal.ns["30min"]("inline", {
+    elementOrSelector:"#team-cal-inline",
+    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+    calLink: "sparkedge555/30min",
+  });
+  Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"dark":{"cal-brand":"#FC653A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "30min", {origin:"https://app.cal.com"});
+  Cal.ns["30min"]("floatingButton", {"calLink":"sparkedge555/30min","config":{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}});
+  Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"dark":{"cal-brand":"#FC653A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<script src="main.js"></script>
+</body>
+</html>
