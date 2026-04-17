@@ -85,7 +85,7 @@ function initLogoSpark() {
 }
 
 /* ── Hero word rotate ── */
-function initWordRotate() {
+(function () {
   const track = document.getElementById("wordTrack");
   const words = document.querySelectorAll(".word");
 
@@ -93,9 +93,10 @@ function initWordRotate() {
 
   let index = 0;
   const step = 1.2;
-  const intervalTime = 500; // 🔥 0.5 sec
-  const transitionTime = 250; // fast animation
+  const intervalTime = 500; // 🔥 fast
+  const transitionTime = 250;
 
+  // instant start (no delay)
   track.style.transform = "translateY(0)";
   track.style.transition = "none";
 
@@ -115,7 +116,8 @@ function initWordRotate() {
     }
 
   }, intervalTime);
-}
+})();
+
 
 /* ── Counter animation ── */
 function animateCounter(el, target, duration = 1500) {
