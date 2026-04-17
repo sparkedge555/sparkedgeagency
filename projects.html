@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projects | SparkEdge — Our Work Portfolio</title>
+  <meta name="description" content="Browse SparkEdge's project portfolio — websites, landing pages and digital assets built for coaching institutes, businesses and brands across India." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav class="navbar">
+  <div class="logo" id="logo">Spark<span>Edge</span><span class="spark-container"></span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20want%20a%20free%20consultation." class="nav-cta" target="_blank">Get Started <i class="fa-brands fa-whatsapp"></i></a>
+  <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div style="position:relative;z-index:2;">
+    <div class="section-label" style="justify-content:center;"><i class="fa-solid fa-briefcase"></i> Portfolio</div>
+    <h1 class="section-title" style="text-align:center;margin-top:14px;">Our <span>Projects</span></h1>
+    <p style="color:var(--muted);max-width:540px;margin:16px auto 0;font-size:1.05rem;text-align:center;">
+      Real websites. Real clients. Real results. Here's some of what we've built.
+    </p>
+  </div>
+</div>
+
+<!-- FILTER TABS -->
+<section style="padding-top:60px;padding-bottom:0;">
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:50px;" class="reveal" id="filter-tabs">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="website">Websites</button>
+    <button class="filter-btn" data-filter="landing">Landing Pages</button>
+    <button class="filter-btn" data-filter="ebook">E-Books</button>
+  </div>
+
+  <!-- ================================================================
+       PROJECTS GRID
+       ================================================================
+       HOW TO ADD YOUR OWN PROJECT:
+       1. Copy one <div class="project-card"> block below
+       2. Change the data-category to: "website", "landing", or "ebook"
+       3. Replace the emoji in .project-thumb with your project's icon
+          OR replace with an <img src="your-screenshot.jpg"> tag
+       4. Update the title, description, tags and live link
+       5. Save and push to GitHub
+
+       EXAMPLE:
+       <div class="project-card" data-category="website">
+         <div class="project-thumb">
+           <img src="screenshots/my-project.jpg" alt="My Project">
+           <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+         </div>
+         <div class="project-info">
+           <h3>Client Name — Institute</h3>
+           <p>Short description of what was built and the result achieved.</p>
+           <div class="project-tags">
+             <span class="tag">Coaching</span>
+             <span class="tag">SEO</span>
+             <span class="tag">Lead Gen</span>
+           </div>
+           <a href="https://your-live-link.com" target="_blank" class="proj-link">
+             View Live <i class="fa-solid fa-arrow-right"></i>
+           </a>
+         </div>
+       </div>
+
+       TIP: Store all project screenshots in a "screenshots/" folder inside your project directory.
+       ================================================================ -->
+
+  <div class="projects-grid" id="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card reveal" data-category="website">
+      <div class="project-thumb">
+        <span style="font-size:3.5rem;">🎓</span>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>Pinnacle Academy — Coaching Website</h3>
+        <p>6-page website for a JEE/NEET institute. Added lead form, teacher profiles and SEO. Enquiries up 3× in first month.</p>
+        <div class="project-tags">
+          <span class="tag">Coaching</span>
+          <span class="tag">SEO</span>
+          <span class="tag">Lead Gen</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card reveal reveal-delay-1" data-category="landing">
+      <div class="project-thumb">
+        <span style="font-size:3.5rem;">📋</span>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>LearnRight EdTech — Admission Landing Page</h3>
+        <p>High-conversion single-page admission form with WhatsApp CTA. Converted 18% of visitors to enquiries in week 1.</p>
+        <div class="project-tags">
+          <span class="tag">EdTech</span>
+          <span class="tag">Landing Page</span>
+          <span class="tag">WhatsApp</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card reveal reveal-delay-2" data-category="ebook">
+      <div class="project-thumb">
+        <span style="font-size:3.5rem;">📖</span>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>"Crack JEE in 6 Months" — Lead Magnet Ebook</h3>
+        <p>24-page professionally designed ebook used as a lead magnet. Generated 200+ email signups in 2 weeks.</p>
+        <div class="project-tags">
+          <span class="tag">E-Book</span>
+          <span class="tag">Lead Magnet</span>
+          <span class="tag">Education</span>
+        </div>
+        <a href="#" class="proj-link">View Sample <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card reveal" data-category="website">
+      <div class="project-thumb">
+        <span style="font-size:3.5rem;">🏥</span>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>City Diagnostics — Hospital Website</h3>
+        <p>Trust-first website with doctor profiles, service pages and Google Maps integration. Appointment form live on day 1.</p>
+        <div class="project-tags">
+          <span class="tag">Healthcare</span>
+          <span class="tag">Local SEO</span>
+          <span class="tag">Appointments</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project-card reveal reveal-delay-1" data-category="website">
+      <div class="project-thumb">
+        <span style="font-size:3.5rem;">🏫</span>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>Sunrise Public School — Institutional Website</h3>
+        <p>Full 8-page school website with admission info, faculty section, gallery and contact. Ranked #2 in local search within 30 days.</p>
+        <div class="project-tags">
+          <span class="tag">School</span>
+          <span class="tag">SEO</span>
+          <span class="tag">Multi-page</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="project-card reveal reveal-delay-2" data-category="landing">
+      <div class="project-thumb">
+        <span style="font-size:3.5rem;">💼</span>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>CA Prateek Sharma — Consultant Landing Page</h3>
+        <p>Personal brand landing page for a Chartered Accountant. Clean, authoritative design with Calendly booking integration.</p>
+        <div class="project-tags">
+          <span class="tag">Personal Brand</span>
+          <span class="tag">Consultant</span>
+          <span class="tag">Booking</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!--
+    ================================================================
+    ADD YOUR NEXT PROJECT HERE — COPY THE BLOCK BELOW
+    ================================================================
+
+    <div class="project-card reveal" data-category="website">
+      <div class="project-thumb">
+        <span style="font-size:3.5rem;">🌟</span>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>Client Name — Project Title</h3>
+        <p>Brief description of what you built and the result you achieved for the client.</p>
+        <div class="project-tags">
+          <span class="tag">Category</span>
+          <span class="tag">Feature</span>
+        </div>
+        <a href="https://live-link.com" target="_blank" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    ================================================================
+    -->
+
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="background:var(--bg2);text-align:center;">
+  <div class="section-label" style="justify-content:center;margin-bottom:40px;" class="reveal"><i class="fa-solid fa-chart-bar"></i> By The Numbers</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:36px;max-width:800px;margin:0 auto;" class="reveal">
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--primary);line-height:1;"><span data-count="30">0</span>+</div>
+      <div style="color:var(--muted);margin-top:8px;font-size:0.9rem;">Projects Delivered</div>
+    </div>
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--primary);line-height:1;"><span data-count="6">0</span>+</div>
+      <div style="color:var(--muted);margin-top:8px;font-size:0.9rem;">Industries Served</div>
+    </div>
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--primary);line-height:1;"><span data-count="100">0</span>%</div>
+      <div style="color:var(--muted);margin-top:8px;font-size:0.9rem;">Client Satisfaction</div>
+    </div>
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--primary);line-height:1;"><span data-count="48">0</span>h</div>
+      <div style="color:var(--muted);margin-top:8px;font-size:0.9rem;">Avg. First Response</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div style="position:relative;z-index:2;">
+    <h2 class="reveal">Want a Website Like <span style="color:var(--primary);">These?</span></h2>
+    <p class="reveal">Let's build something great together. Message us for a free consultation.</p>
+    <a class="btn reveal" href="https://wa.me/919142450715?text=Hi!%20I%20saw%20your%20projects%20and%20want%20to%20discuss%20my%20website." target="_blank">
+      <i class="fa-brands fa-whatsapp"></i> Discuss My Project
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="logo">Spark<span>Edge</span></div><p style="margin-top:14px;color:var(--muted);font-size:0.9rem;">Premium web experiences across India.</p></div>
+    <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Website Dev</a></li><li><a href="services.html">Landing Pages</a></li><li><a href="services.html">E-Books</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="https://wa.me/919142450715" target="_blank"><i class="fa-brands fa-whatsapp" style="color:var(--primary);margin-right:6px;"></i>+91 91424 50715</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 SparkEdge. All rights reserved.</span><span>Design • Strategy • Conversion</span></div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/919142450715" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+<style>
+  .filter-btn {
+    padding: 10px 22px;
+    border-radius: 50px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--primary-dim);
+    border-color: var(--border-hover);
+    color: var(--primary);
+  }
+  .proj-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary);
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-top: 18px;
+    transition: gap 0.2s;
+  }
+  .proj-link:hover { gap: 10px; }
+  .project-card.hidden { display: none; }
+</style>
+
+<script src="main.js"></script>
+<script>
+  // Filter functionality
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
