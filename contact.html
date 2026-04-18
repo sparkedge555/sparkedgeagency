@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact | SparkEdge — Get a Free Consultation</title>
+  <meta name="description" content="Contact SparkEdge for a free website consultation. Message us on WhatsApp or fill our contact form. We respond within 2 hours." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .quick-msg {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 18px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--muted);
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .quick-msg:hover {
+      border-color: var(--border-hover);
+      color: var(--text);
+      background: var(--primary-dim);
+      transform: translateX(4px);
+    }
+    .quick-msg i { color: var(--primary); width: 18px; text-align: center; }
+
+    /* Google Form wrapper — dark theme aligned */
+    .gform-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /*
+      GOOGLE FORM DARK THEME:
+      Go to your Google Form → Click the palette icon (Customize Theme)
+      → Set Header color to #FC653A (our brand orange)
+      → Set Background color to #111111 (matches --card)
+      → Set Font to Outfit or a clean sans-serif
+      Google Forms does not support full CSS injection in an iframe,
+      but matching the background gets you 80% of the way there.
+    */
+    .gform-wrap iframe {
+      width: 100%;
+      border: none;
+      display: block;
+      min-height: 820px;
+      background: transparent;
+      color-scheme: dark;
+    }
+
+    /* Cal inline */
+    #contact-cal-inline { width: 100%; height: 650px; overflow: scroll; }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr !important; }
+    }
+
+    @media (max-width: 480px) {
+      .contact-grid { gap: 32px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav class="navbar">
+  <div class="logo" id="logo">Spark<span>Edge</span><span class="spark-container"></span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!" class="nav-cta" target="_blank">WhatsApp Us <i class="fa-brands fa-whatsapp"></i></a>
+  <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div style="position:relative;z-index:2;">
+    <div class="section-label" style="justify-content:center;"><i class="fa-solid fa-envelope"></i> Let's Talk</div>
+    <h1 class="section-title" style="text-align:center;margin-top:14px;">Get in <span>Touch</span></h1>
+    <p style="color:var(--muted);max-width:500px;margin:16px auto 0;font-size:1.05rem;text-align:center;">
+      Free 15-minute consultation. We'll tell you exactly what your business needs — no pressure, no jargon.
+    </p>
+  </div>
+</div>
+
+<!-- CONTACT GRID -->
+<section>
+  <div class="contact-grid">
+
+    <!-- Left: Info -->
+    <div class="contact-info">
+      <div class="section-label reveal"><i class="fa-solid fa-bolt"></i> Quick Response</div>
+      <h2 class="reveal">We Respond <span style="color:var(--primary);">Within 2 Hours</span></h2>
+      <p class="reveal" style="color:var(--muted);margin-bottom:36px;">The fastest way to reach us is WhatsApp. We're available Mon–Sat, 9 AM – 9 PM IST.</p>
+
+      <div class="contact-item reveal">
+        <div class="contact-item-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="contact-item-text">
+          <strong>WhatsApp (Fastest)</strong>
+          <span><a href="https://wa.me/919142450715" target="_blank" style="color:var(--primary);">+91 91424 50715</a></span>
+        </div>
+      </div>
+
+      <div class="contact-item reveal">
+        <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="contact-item-text">
+          <strong>Email</strong>
+          <span><a href="mailto:sparkedge555@gmail.com" style="color:var(--primary);">sparkedge555@gmail.com</a></span>
+        </div>
+      </div>
+
+      <div class="contact-item reveal">
+        <div class="contact-item-icon"><i class="fa-solid fa-clock"></i></div>
+        <div class="contact-item-text">
+          <strong>Working Hours</strong>
+          <span>Mon–Sat · 9:00 AM – 9:00 PM IST</span>
+        </div>
+      </div>
+
+      <div class="contact-item reveal">
+        <div class="contact-item-icon"><i class="fa-brands fa-github"></i></div>
+        <div class="contact-item-text">
+          <strong>GitHub</strong>
+          <span><a href="https://github.com/sparkedge-agency" target="_blank" style="color:var(--primary);">github.com/sparkedge-agency</a></span>
+        </div>
+      </div>
+
+      <!-- WhatsApp quick message buttons -->
+      <div class="reveal" style="margin-top:40px;">
+        <div style="font-size:0.85rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:600;margin-bottom:14px;">Quick Message</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20need%20a%20website%20for%20my%20coaching%20institute." target="_blank" class="quick-msg">
+            <i class="fa-solid fa-chalkboard-teacher"></i> I need a coaching institute website
+          </a>
+          <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20need%20a%20website%20for%20my%20business." target="_blank" class="quick-msg">
+            <i class="fa-solid fa-store"></i> I need a business website
+          </a>
+          <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I'm%20interested%20in%20your%20ebook%20service." target="_blank" class="quick-msg">
+            <i class="fa-solid fa-book-open"></i> I want an ebook designed
+          </a>
+          <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20want%20a%20free%20consultation." target="_blank" class="quick-msg">
+            <i class="fa-solid fa-phone"></i> Just want a free consultation
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Google Form -->
+    <div class="reveal">
+      <div class="gform-wrap">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdG2NpKt5tCT0O13IwZe-ztd_Y9MvOgGMi9A84z5KpFYysghw/viewform?embedded=true"
+          width="100%"
+          height="820"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="SparkEdge Client Enquiry Form"
+        >
+          Loading form...
+        </iframe>
+      </div>
+      <!-- Tip: To match dark theme in the Google Form, open the form editor,
+           click the palette icon, set background to #111111 and header to #FC653A -->
+    </div>
+
+  </div>
+</section>
+
+<!-- BOOK A CALL -->
+<section style="background:var(--bg2);">
+  <div class="section-label reveal" style="justify-content:center;"><i class="fa-solid fa-calendar-check"></i> Schedule a Call</div>
+  <h2 class="section-title reveal" style="text-align:center;">Book a Free <span>30-Min Session</span></h2>
+  <p class="section-sub reveal" style="text-align:center;margin:0 auto 48px;">Prefer talking over a call? Pick a slot directly in our calendar. Raunak will personally attend.</p>
+  <div class="cal-container reveal">
+    <div style="width:100%;height:100%;overflow:scroll" id="contact-cal-inline"></div>
+  </div>
+</section>
+
+<!-- Response guarantee -->
+<section style="background:var(--bg2);padding:60px 8%;">
+  <div class="grid-3">
+    <div class="card reveal" style="text-align:center;padding:32px;">
+      <i class="fa-solid fa-bolt" style="font-size:2rem;color:var(--primary);margin-bottom:14px;display:block;"></i>
+      <strong style="display:block;margin-bottom:8px;">2-Hour Response</strong>
+      <span style="color:var(--muted);font-size:0.9rem;">We reply to every message within 2 hours during business hours.</span>
+    </div>
+    <div class="card reveal reveal-delay-1" style="text-align:center;padding:32px;">
+      <i class="fa-solid fa-shield-halved" style="font-size:2rem;color:var(--primary);margin-bottom:14px;display:block;"></i>
+      <strong style="display:block;margin-bottom:8px;">Zero Pressure Guarantee</strong>
+      <span style="color:var(--muted);font-size:0.9rem;">Our consultation is completely free. No hard sell. No obligation whatsoever.</span>
+    </div>
+    <div class="card reveal reveal-delay-2" style="text-align:center;padding:32px;">
+      <i class="fa-solid fa-handshake" style="font-size:2rem;color:var(--primary);margin-bottom:14px;display:block;"></i>
+      <strong style="display:block;margin-bottom:8px;">Clear Proposal Upfront</strong>
+      <span style="color:var(--muted);font-size:0.9rem;">We give you a written scope, price and timeline before any work begins.</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Spark<span>Edge</span></div>
+      <p style="margin-top:14px;color:var(--muted);font-size:0.9rem;">Premium web experiences for coaching institutes, schools, hospitals and growing businesses across India.</p>
+    </div>
+    <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Website Dev</a></li><li><a href="services.html">Landing Pages</a></li><li><a href="services.html">E-Books</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul>
+      <li><a href="https://wa.me/919142450715" target="_blank"><i class="fa-brands fa-whatsapp" style="color:var(--primary);margin-right:6px;"></i>+91 91424 50715</a></li>
+      <li><a href="mailto:sparkedge555@gmail.com"><i class="fa-solid fa-envelope" style="color:var(--primary);margin-right:6px;"></i>sparkedge555@gmail.com</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 SparkEdge. All rights reserved.</span><span>Design • Strategy • Conversion</span></div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/919142450715" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+<!-- Cal inline ONLY — no floating button -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "30min", {origin:"https://app.cal.com"});
+  Cal.ns["30min"]("inline", {
+    elementOrSelector:"#contact-cal-inline",
+    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+    calLink: "sparkedge555/30min",
+  });
+  Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"dark":{"cal-brand":"#FC653A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Projects | SparkEdge — Our Work Portfolio</title>
+  <meta name="description" content="Browse SparkEdge's project portfolio — websites, landing pages and digital assets built for coaching institutes, businesses and brands across India." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .filter-btn {
+      padding: 10px 22px;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary-dim);
+      border-color: var(--border-hover);
+      color: var(--primary);
+    }
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 14px;
+      transition: gap 0.2s;
+    }
+    .proj-link:hover { gap: 10px; }
+    .project-card.hidden { display: none; }
+
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--card2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    .project-card:hover .project-thumb img { transform: scale(1.05); }
+
+    .proj-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%; height: 100%;
+      gap: 12px;
+      background: linear-gradient(135deg, #181818, #111);
+    }
+    .proj-placeholder-icon { font-size: 3rem; opacity: 0.35; }
+
+    .project-thumb .overlay {
+      position: absolute; inset: 0;
+      background: rgba(252,101,58,0.15);
+      opacity: 0; transition: opacity 0.3s;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--primary);
+    }
+    .project-card:hover .overlay { opacity: 1; }
+
+    /* ── Client quote below each project card ── */
+    .project-quote {
+      background: var(--bg2);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 16px 20px;
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.7;
+      position: relative;
+    }
+    .project-quote::before {
+      content: '\201C';
+      font-size: 2.2rem;
+      color: var(--primary);
+      opacity: 0.4;
+      position: absolute;
+      top: 2px; left: 14px;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .project-quote-text { padding-left: 20px; }
+    .project-quote-author {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 12px; padding-left: 20px;
+      font-style: normal;
+    }
+    .project-quote-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--primary-dim);
+      border: 1px solid var(--border-hover);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 0.72rem;
+      color: var(--primary); flex-shrink: 0;
+    }
+    .project-quote-name { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+    .project-quote-role { font-size: 0.76rem; color: var(--muted); }
+    .project-quote .stars { font-size: 0.75rem; color: #f5c518; letter-spacing: 1px; margin-bottom: 4px; }
+
+    /* Testimonials strip */
+    .testimonials-strip {
+      background: var(--bg2);
+      padding: 80px 8%;
+    }
+    .tstrip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .tstrip-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .tstrip-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+    .tstrip-card .tstars { color: #f5c518; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 14px; }
+    .tstrip-card blockquote { color: var(--muted); font-size: 0.93rem; line-height: 1.8; font-style: italic; margin-bottom: 20px; }
+    .tstrip-author { display: flex; align-items: center; gap: 12px; }
+    .tstrip-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg,var(--primary),#ff9f7a); display: flex; align-items: center; justify-content: center; font-family:'Syne',sans-serif; font-weight:800; font-size:0.85rem; color:#fff; flex-shrink:0; }
+    .tstrip-name { font-size: 0.9rem; font-weight: 700; }
+    .tstrip-role { font-size: 0.78rem; color: var(--muted); }
+
+    /* Cal booking */
+    #projects-cal-inline { width: 100%; height: 650px; overflow: scroll; }
+
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<nav class="navbar">
+  <div class="logo" id="logo">Spark<span>Edge</span><span class="spark-container"></span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20want%20a%20free%20consultation." class="nav-cta" target="_blank">Get Started <i class="fa-brands fa-whatsapp"></i></a>
+  <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div style="position:relative;z-index:2;">
+    <div class="section-label" style="justify-content:center;"><i class="fa-solid fa-briefcase"></i> Portfolio</div>
+    <h1 class="section-title" style="text-align:center;margin-top:14px;">Our <span>Projects</span></h1>
+    <p style="color:var(--muted);max-width:540px;margin:16px auto 0;font-size:1.05rem;text-align:center;">
+      Real websites. Real clients. Real results. Here's some of what we've built.
+    </p>
+  </div>
+</div>
+
+<section style="padding-top:60px;padding-bottom:0;">
+
+  <!-- FILTER TABS -->
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:50px;" class="reveal" id="filter-tabs">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="website">Websites</button>
+    <button class="filter-btn" data-filter="landing">Landing Pages</button>
+    <button class="filter-btn" data-filter="ebook">E-Books</button>
+  </div>
+
+  <div class="projects-grid" id="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card reveal" data-category="website">
+      <div class="project-thumb">
+        <!-- See README.md for how to add screenshots -->
+        <img src="screenshots/pinnacle-academy.jpg" alt="Pinnacle Academy Website"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="proj-placeholder" style="display:none;">
+          <span class="proj-placeholder-icon">🎓</span>
+        </div>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>Pinnacle Academy — Coaching Website</h3>
+        <p>6-page website for a JEE/NEET institute. Added lead form, teacher profiles and SEO. Enquiries up 3× in first month.</p>
+        <div class="project-tags">
+          <span class="tag">Coaching</span>
+          <span class="tag">SEO</span>
+          <span class="tag">Lead Gen</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <!-- CLIENT TESTIMONIAL — edit text, name, and role freely -->
+      <div class="project-quote">
+        <div class="stars">★★★★★</div>
+        <div class="project-quote-text">"SparkEdge delivered our website in just 5 days. The enquiry form started getting leads within the first week. Incredibly professional."</div>
+        <div class="project-quote-author">
+          <div class="project-quote-avatar">AK</div>
+          <div>
+            <div class="project-quote-name">Amit Kumar</div>
+            <div class="project-quote-role">Director, Pinnacle Academy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card reveal reveal-delay-1" data-category="landing">
+      <div class="project-thumb">
+        <img src="screenshots/learnright-landing.jpg" alt="LearnRight Landing Page"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="proj-placeholder" style="display:none;">
+          <span class="proj-placeholder-icon">📋</span>
+        </div>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>LearnRight EdTech — Admission Landing Page</h3>
+        <p>High-conversion single-page admission form with WhatsApp CTA. Converted 18% of visitors to enquiries in week 1.</p>
+        <div class="project-tags">
+          <span class="tag">EdTech</span>
+          <span class="tag">Landing Page</span>
+          <span class="tag">WhatsApp</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <!-- CLIENT TESTIMONIAL — edit freely -->
+      <div class="project-quote">
+        <div class="stars">★★★★★</div>
+        <div class="project-quote-text">"The landing page was live in 3 days and our admission enquiries jumped immediately. Clean, fast, and exactly what we needed."</div>
+        <div class="project-quote-author">
+          <div class="project-quote-avatar">PS</div>
+          <div>
+            <div class="project-quote-name">Priya Singh</div>
+            <div class="project-quote-role">Founder, LearnRight EdTech</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card reveal reveal-delay-2" data-category="ebook">
+      <div class="project-thumb">
+        <img src="screenshots/jee-ebook-cover.jpg" alt="Crack JEE Ebook"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="proj-placeholder" style="display:none;">
+          <span class="proj-placeholder-icon">📖</span>
+        </div>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>"Crack JEE in 6 Months" — Lead Magnet Ebook</h3>
+        <p>24-page professionally designed ebook used as a lead magnet. Generated 200+ email signups in 2 weeks.</p>
+        <div class="project-tags">
+          <span class="tag">E-Book</span>
+          <span class="tag">Lead Magnet</span>
+          <span class="tag">Education</span>
+        </div>
+        <a href="#" class="proj-link">View Sample <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <!-- CLIENT TESTIMONIAL — edit freely -->
+      <div class="project-quote">
+        <div class="stars">★★★★★</div>
+        <div class="project-quote-text">"The ebook was polished, well-structured and became our #1 lead magnet. Worth every rupee and more. Students loved it."</div>
+        <div class="project-quote-author">
+          <div class="project-quote-avatar">RJ</div>
+          <div>
+            <div class="project-quote-name">Rahul Joshi</div>
+            <div class="project-quote-role">Founder, ClearJEE Coaching</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card reveal" data-category="website">
+      <div class="project-thumb">
+        <img src="screenshots/city-diagnostics.jpg" alt="City Diagnostics Website"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="proj-placeholder" style="display:none;">
+          <span class="proj-placeholder-icon">🏥</span>
+        </div>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>City Diagnostics — Hospital Website</h3>
+        <p>Trust-first website with doctor profiles, service pages and Google Maps integration. Appointment form live on day 1.</p>
+        <div class="project-tags">
+          <span class="tag">Healthcare</span>
+          <span class="tag">Local SEO</span>
+          <span class="tag">Appointments</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <!-- CLIENT TESTIMONIAL — edit freely -->
+      <div class="project-quote">
+        <div class="stars">★★★★★</div>
+        <div class="project-quote-text">"Fast, responsive and they understand what a clinic actually needs. Our website now shows up on Google and patients book directly online."</div>
+        <div class="project-quote-author">
+          <div class="project-quote-avatar">RV</div>
+          <div>
+            <div class="project-quote-name">Raj Verma</div>
+            <div class="project-quote-role">Owner, City Diagnostics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="project-card reveal reveal-delay-1" data-category="website">
+      <div class="project-thumb">
+        <img src="screenshots/sunrise-school.jpg" alt="Sunrise Public School Website"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="proj-placeholder" style="display:none;">
+          <span class="proj-placeholder-icon">🏫</span>
+        </div>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>Sunrise Public School — Institutional Website</h3>
+        <p>Full 8-page school website with admission info, faculty section, gallery and contact. Ranked #2 in local search within 30 days.</p>
+        <div class="project-tags">
+          <span class="tag">School</span>
+          <span class="tag">SEO</span>
+          <span class="tag">Multi-page</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <!-- CLIENT TESTIMONIAL — edit freely -->
+      <div class="project-quote">
+        <div class="stars">★★★★★</div>
+        <div class="project-quote-text">"Our school now ranks on Google and parents fill the admission form directly from the site. The team delivered ahead of schedule."</div>
+        <div class="project-quote-author">
+          <div class="project-quote-avatar">NK</div>
+          <div>
+            <div class="project-quote-name">Neha Kapoor</div>
+            <div class="project-quote-role">Principal, Sunrise Public School</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="project-card reveal reveal-delay-2" data-category="landing">
+      <div class="project-thumb">
+        <img src="screenshots/ca-prateek-landing.jpg" alt="CA Prateek Landing Page"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="proj-placeholder" style="display:none;">
+          <span class="proj-placeholder-icon">💼</span>
+        </div>
+        <div class="overlay"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+      </div>
+      <div class="project-info">
+        <h3>CA Prateek Sharma — Consultant Landing Page</h3>
+        <p>Personal brand landing page for a Chartered Accountant. Clean, authoritative design with Calendly booking integration.</p>
+        <div class="project-tags">
+          <span class="tag">Personal Brand</span>
+          <span class="tag">Consultant</span>
+          <span class="tag">Booking</span>
+        </div>
+        <a href="#" class="proj-link">View Live <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <!-- CLIENT TESTIMONIAL — edit freely -->
+      <div class="project-quote">
+        <div class="stars">★★★★★</div>
+        <div class="project-quote-text">"My personal brand page looks premium and professional. Clients now find me on Google and book directly — the ROI was immediate."</div>
+        <div class="project-quote-author">
+          <div class="project-quote-avatar">CP</div>
+          <div>
+            <div class="project-quote-name">CA Prateek Sharma</div>
+            <div class="project-quote-role">Chartered Accountant</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="background:var(--bg2);text-align:center;">
+  <div class="section-label reveal" style="justify-content:center;margin-bottom:40px;"><i class="fa-solid fa-chart-bar"></i> By The Numbers</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:36px;max-width:800px;margin:0 auto;" class="reveal">
+    <div><div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--primary);line-height:1;"><span data-count="30">0</span>+</div><div style="color:var(--muted);margin-top:8px;font-size:0.9rem;">Projects Delivered</div></div>
+    <div><div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--primary);line-height:1;"><span data-count="6">0</span>+</div><div style="color:var(--muted);margin-top:8px;font-size:0.9rem;">Industries Served</div></div>
+    <div><div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--primary);line-height:1;"><span data-count="100">0</span>%</div><div style="color:var(--muted);margin-top:8px;font-size:0.9rem;">Client Satisfaction</div></div>
+    <div><div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--primary);line-height:1;"><span data-count="7">0</span>d</div><div style="color:var(--muted);margin-top:8px;font-size:0.9rem;">Avg. Delivery Time</div></div>
+  </div>
+</section>
+
+<!-- FULL TESTIMONIALS STRIP -->
+<section class="testimonials-strip">
+  <div class="section-label reveal" style="justify-content:center;"><i class="fa-solid fa-quote-left"></i> Client Voices</div>
+  <h2 class="section-title reveal" style="text-align:center;">More Client <span>Stories</span></h2>
+  <p style="color:var(--muted);text-align:center;max-width:520px;margin:14px auto 0;" class="reveal">
+    Every project is a partnership. Here's what our clients say about working with SparkEdge.
+  </p>
+  <!-- TO ADD MORE TESTIMONIALS: copy a .tstrip-card block, change text, name, role, and avatar initials -->
+  <div class="tstrip-grid">
+    <div class="tstrip-card reveal">
+      <div class="tstars">★★★★★</div>
+      <blockquote>"Raunak understood exactly what a coaching institute needs. No fluff — just a website that generates real enquiries. Best investment we made this year."</blockquote>
+      <div class="tstrip-author">
+        <div class="tstrip-avatar">SK</div>
+        <div>
+          <div class="tstrip-name">Santosh Kumar</div>
+          <div class="tstrip-role">Co-Director, Apex Classes</div>
+        </div>
+      </div>
+    </div>
+    <div class="tstrip-card reveal reveal-delay-1">
+      <div class="tstars">★★★★★</div>
+      <blockquote>"The entire process was transparent. Proposal, timeline, delivery — all as promised. Our hospital site is now the #1 result for our clinic name on Google."</blockquote>
+      <div class="tstrip-author">
+        <div class="tstrip-avatar">DM</div>
+        <div>
+          <div class="tstrip-name">Dr. Meera Shah</div>
+          <div class="tstrip-role">Founder, Meera Wellness Clinic</div>
+        </div>
+      </div>
+    </div>
+    <div class="tstrip-card reveal reveal-delay-2">
+      <div class="tstars">★★★★★</div>
+      <blockquote>"I was skeptical about getting a website this fast. But SparkEdge delivered a 5-page site in 6 days that looks better than agencies charging 3× the price."</blockquote>
+      <div class="tstrip-author">
+        <div class="tstrip-avatar">VB</div>
+        <div>
+          <div class="tstrip-name">Vikram Bhatt</div>
+          <div class="tstrip-role">Owner, VB Tutors</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK A PROJECT DISCUSSION -->
+<section style="background:var(--card);">
+  <div class="section-label reveal" style="justify-content:center;"><i class="fa-solid fa-calendar-check"></i> Project Discussion</div>
+  <h2 class="section-title reveal" style="text-align:center;">Book a Free <span>Project Call</span></h2>
+  <p class="section-sub reveal" style="text-align:center;margin:0 auto 48px;">Liked what you saw? Let's discuss what we can build for you. 30 minutes, completely free.</p>
+  <div class="cal-container reveal">
+    <div style="width:100%;height:100%;overflow:scroll" id="projects-cal-inline"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div style="position:relative;z-index:2;">
+    <h2 class="reveal">Want a Website Like <span style="color:var(--primary);">These?</span></h2>
+    <p class="reveal">Let's build something great together. Message us for a free consultation.</p>
+    <a class="btn reveal" href="https://wa.me/919142450715?text=Hi!%20I%20saw%20your%20projects%20and%20want%20to%20discuss%20my%20website." target="_blank">
+      <i class="fa-brands fa-whatsapp"></i> Discuss My Project
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Spark<span>Edge</span></div>
+      <p style="margin-top:14px;color:var(--muted);font-size:0.9rem;">Premium web experiences across India.</p>
+    </div>
+    <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Website Dev</a></li><li><a href="services.html">Landing Pages</a></li><li><a href="services.html">E-Books</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul>
+      <li><a href="https://wa.me/919142450715" target="_blank"><i class="fa-brands fa-whatsapp" style="color:var(--primary);margin-right:6px;"></i>+91 91424 50715</a></li>
+      <li><a href="mailto:sparkedge555@gmail.com"><i class="fa-solid fa-envelope" style="color:var(--primary);margin-right:6px;"></i>sparkedge555@gmail.com</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 SparkEdge. All rights reserved.</span><span>Design • Strategy • Conversion</span></div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/919142450715" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+
+<!-- Cal inline ONLY — no floating button -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "30min", {origin:"https://app.cal.com"});
+  Cal.ns["30min"]("inline", {
+    elementOrSelector:"#projects-cal-inline",
+    config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true"},
+    calLink: "sparkedge555/30min",
+  });
+  Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"dark":{"cal-brand":"#FC653A"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<script src="main.js"></script>
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
+      });
+    });
+  });
+</script>
+</body>
+</html>
