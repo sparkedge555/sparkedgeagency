@@ -3,24 +3,433 @@
 <head>
   <meta charset="UTF-8" />
   <title>Services | SparkEdge — Website Design & Digital Assets</title>
-  <meta name="description" content="Explore SparkEdge's full range of services: website development, landing pages, e-book creation, SEO setup and book structuring for coaching institutes and businesses." />
+  <meta name="description" content="Explore SparkEdge's full range of services: website development, billing software, video editing, poster design, ebook creation and SEO for coaching institutes and businesses." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/x-icon" href="favicon-icon.ico">
   <style>
-    /* Responsive fixes for 2-col service layouts */
-    .service-2col {
+    /* =============================================
+       SERVICES PAGE — PREMIUM REDESIGN
+       Only this page is affected. style.css untouched.
+       ============================================= */
+
+    /* ---------- Page Hero ---------- */
+    .svcpage-hero {
+      padding: calc(var(--nav-h) + 64px) 8% 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .svcpage-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(252,101,58,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .svcpage-hero .section-label { justify-content: center; margin-bottom: 18px; }
+    .svcpage-hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; margin-bottom: 18px; }
+    .svcpage-hero p { color: var(--muted); max-width: 560px; margin: 0 auto; font-size: 1.05rem; line-height: 1.7; }
+
+    /* ---------- Category Label ---------- */
+    .svc-category-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .svc-category-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 120px;
+    }
+
+    /* ---------- Featured Service Block (Website Dev) ---------- */
+    .svcpage-featured {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      position: relative;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .svcpage-featured:hover {
+      border-color: var(--primary);
+      box-shadow: 0 24px 72px rgba(252,101,58,0.12);
+    }
+    .svcpage-featured-inner {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 0;
+    }
+    .svcpage-featured-left {
+      padding: 52px 48px;
+      border-right: 1px solid var(--border);
+    }
+    .svcpage-featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .svcpage-featured-left h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+    .svcpage-featured-left > p {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 32px;
+    }
+    .svcpage-checklist {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 10px 24px;
+      margin-bottom: 32px;
+    }
+    .svcpage-checklist li {
+      list-style: none;
+      display: flex;
       align-items: center;
-      padding: 50px 0;
+      gap: 9px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .svcpage-checklist li i { color: var(--success, #4ade80); font-size: 0.8rem; flex-shrink: 0; }
+    .svcpage-price-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .svcpage-price-row .price-range {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .svcpage-price-row .price-note { font-size: 0.85rem; color: var(--muted); }
+    .svcpage-featured-right {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+      background: var(--card2);
+    }
+    .svcpage-stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .svcpage-stat-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .svcpage-stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .svcpage-stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+
+    /* ---------- Conversion Flow Strip ---------- */
+    .svc-flow-strip {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      margin-bottom: 0;
+      flex-wrap: nowrap;
+    }
+    .svc-flow-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .svc-flow-step .num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-dim);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .svc-flow-arrow {
+      color: var(--border);
+      margin: 0 18px;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* ---------- Service Cards Grid ---------- */
+    .svcpage-grid {
+      display: grid;
+      gap: 20px;
+    }
+    .svcpage-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .svcpage-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .svcpage-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .svcpage-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), #ff9f7a);
+      transform: scaleX(0);
+      transition: transform 0.35s ease;
+      transform-origin: left;
+    }
+    .svcpage-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.35);
+    }
+    .svcpage-card:hover::before { transform: scaleX(1); }
+
+    .svcpage-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--primary-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1.25rem;
+      margin-bottom: 22px;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+    }
+    .svcpage-card:hover .svcpage-card-icon {
+      background: var(--primary);
+      color: #fff;
+      transform: scale(1.06) rotate(-4deg);
+    }
+    .svcpage-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .svcpage-card > p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+    .svcpage-card-features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .svcpage-card-features li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .svcpage-card-features li i { color: var(--primary); font-size: 0.76rem; flex-shrink: 0; }
+    .svcpage-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .svcpage-card-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .svcpage-card-price span {
+      font-family: inherit;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .svcpage-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.83rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .svcpage-card:hover .svcpage-card-link { gap: 10px; }
+
+    /* ---------- Billing Software Special Card ---------- */
+    .billing-highlight {
+      background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
+      border-color: rgba(252,101,58,0.3);
+    }
+    .billing-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(252,101,58,0.12);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 11px;
+      border-radius: 100px;
+      border: 1px solid rgba(252,101,58,0.25);
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .billing-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .billing-tag {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .billing-tag.accent {
+      background: rgba(252,101,58,0.1);
+      border-color: rgba(252,101,58,0.25);
+      color: var(--primary);
+    }
+
+    /* ---------- Process Steps ---------- */
+    .svcpage-steps {
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .svcpage-step {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 24px 0;
       border-bottom: 1px solid var(--border);
+      counter-increment: step;
+    }
+    .svcpage-step:last-child { border-bottom: none; }
+    .svcpage-step-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .svcpage-step h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .svcpage-step p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1024px) {
+      .svcpage-featured-inner { grid-template-columns: 1fr; }
+      .svcpage-featured-left { border-right: none; border-bottom: 1px solid var(--border); padding: 40px 36px; }
+      .svcpage-featured-right { flex-direction: row; flex-wrap: wrap; gap: 12px; padding: 32px 36px; }
+      .svcpage-stat { flex: 1; min-width: 140px; }
+      .svcpage-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-      .service-2col { grid-template-columns: 1fr; gap: 32px; }
-      .service-2col.reverse { direction: ltr; }
+      .svcpage-hero { padding: calc(var(--nav-h) + 40px) 6% 52px; }
+      .svcpage-featured-left { padding: 28px 24px; }
+      .svcpage-featured-right { padding: 24px; }
+      .svcpage-checklist { grid-template-columns: 1fr; }
+      .svcpage-grid.cols-2 { grid-template-columns: 1fr; }
+      .svcpage-grid.cols-3 { grid-template-columns: 1fr; }
+      .svc-flow-strip { padding: 18px 20px; gap: 0; }
+      .svcpage-card { padding: 28px 22px; }
+    }
+    @media (max-width: 480px) {
+      .svcpage-featured-inner { grid-template-columns: 1fr; }
+      .svcpage-featured-right { flex-direction: column; }
+      .svcpage-stat { min-width: unset; }
     }
   </style>
 </head>
@@ -41,113 +450,210 @@
   <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
 </nav>
 
-<div class="page-hero">
-  <div class="page-hero-bg"></div>
-  <div style="position:relative;z-index:2;">
-    <div class="section-label" style="justify-content:center;"><i class="fa-solid fa-star"></i> Full Service Menu</div>
-    <h1 class="section-title" style="text-align:center;margin-top:14px;">What We <span>Deliver</span></h1>
-    <p style="color:var(--muted);max-width:580px;margin:16px auto 0;font-size:1.05rem;text-align:center;">
-      Every service is crafted to produce one outcome: more clients for your business. No fluff. Just results.
-    </p>
-  </div>
+<!-- PAGE HERO -->
+<div class="svcpage-hero">
+  <div class="section-label"><i class="fa-solid fa-star"></i> Full Service Menu</div>
+  <h1>What We <span style="color:var(--primary);">Deliver</span></h1>
+  <p>Every service is crafted to produce one outcome: more clients for your business. No fluff. Just results.</p>
 </div>
 
-<!-- CORE SERVICES DETAIL -->
+<!-- =============================================
+     SECTION 1: WEBSITE DESIGN & DEVELOPMENT
+     ============================================= -->
 <section>
-  <div class="section-label reveal"><i class="fa-solid fa-code"></i> Web Services</div>
-  <h2 class="section-title reveal">Website <span>Development</span></h2>
+  <div class="svc-category-label reveal"><i class="fa-solid fa-code"></i> Core Web Service</div>
 
-  <!-- Service 1 -->
-  <div class="service-2col reveal">
-    <div>
-      <div class="card-icon" style="margin-bottom:20px;"><i class="fa-solid fa-display"></i></div>
-      <h3 style="font-size:1.6rem;font-weight:800;margin-bottom:16px;">Static Website Development</h3>
-      <p style="color:var(--muted);margin-bottom:24px;font-size:1rem;">We build blazing-fast, SEO-optimized websites using clean HTML, CSS and JavaScript. No bloated WordPress. No monthly plugin fees. Just lean, fast code that Google loves and visitors convert on.</p>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
-        <li style="display:flex;gap:10px;align-items:center;color:var(--muted);font-size:0.94rem;"><i class="fa-solid fa-check" style="color:var(--success);"></i> Loads in under 2 seconds</li>
-        <li style="display:flex;gap:10px;align-items:center;color:var(--muted);font-size:0.94rem;"><i class="fa-solid fa-check" style="color:var(--success);"></i> Mobile-first responsive design</li>
-        <li style="display:flex;gap:10px;align-items:center;color:var(--muted);font-size:0.94rem;"><i class="fa-solid fa-check" style="color:var(--success);"></i> Schema markup for local SEO</li>
-        <li style="display:flex;gap:10px;align-items:center;color:var(--muted);font-size:0.94rem;"><i class="fa-solid fa-check" style="color:var(--success);"></i> Free GitHub Pages hosting</li>
-        <li style="display:flex;gap:10px;align-items:center;color:var(--muted);font-size:0.94rem;"><i class="fa-solid fa-check" style="color:var(--success);"></i> WhatsApp & Google Form integration</li>
+  <!-- Featured block -->
+  <div class="svcpage-featured reveal">
+    <div class="svcpage-featured-inner">
+      <div class="svcpage-featured-left">
+        <div class="svcpage-featured-badge"><i class="fa-solid fa-crown"></i> Flagship Service</div>
+        <h2>Website Design &amp; Development</h2>
+        <p>Ultra-fast, SEO-first websites built with clean HTML, CSS and JavaScript — no bloated WordPress, no monthly plugin fees. Engineered to rank on Google and convert visitors into real paying clients for coaching institutes, schools, hospitals and growing businesses.</p>
+        <ul class="svcpage-checklist">
+          <li><i class="fa-solid fa-check"></i> Sub-2 second load time</li>
+          <li><i class="fa-solid fa-check"></i> Mobile-first responsive design</li>
+          <li><i class="fa-solid fa-check"></i> Schema markup for local SEO</li>
+          <li><i class="fa-solid fa-check"></i> Free GitHub Pages hosting</li>
+          <li><i class="fa-solid fa-check"></i> WhatsApp & Google Form integration</li>
+          <li><i class="fa-solid fa-check"></i> Conversion-focused copywriting</li>
+          <li><i class="fa-solid fa-check"></i> Google Analytics setup</li>
+          <li><i class="fa-solid fa-check"></i> Clean, handover-ready codebase</li>
+        </ul>
+        <div class="svcpage-price-row">
+          <div>
+            <div class="price-range">₹6,999 – ₹19,999</div>
+            <div class="price-note">Based on package · No hidden charges</div>
+          </div>
+          <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20want%20to%20discuss%20website%20development." class="btn" target="_blank" style="margin-left:auto;flex-shrink:0;"><i class="fa-brands fa-whatsapp"></i> Get Quote</a>
+        </div>
+      </div>
+      <div class="svcpage-featured-right">
+        <div class="svcpage-stat">
+          <div class="svcpage-stat-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div>
+            <div class="svcpage-stat-num">&lt;2s</div>
+            <div class="svcpage-stat-label">Page Load Time</div>
+          </div>
+        </div>
+        <div class="svcpage-stat">
+          <div class="svcpage-stat-icon"><i class="fa-solid fa-server"></i></div>
+          <div>
+            <div class="svcpage-stat-num">₹0</div>
+            <div class="svcpage-stat-label">Monthly Hosting Cost</div>
+          </div>
+        </div>
+        <div class="svcpage-stat">
+          <div class="svcpage-stat-icon"><i class="fa-solid fa-gauge-high"></i></div>
+          <div>
+            <div class="svcpage-stat-num">100</div>
+            <div class="svcpage-stat-label">Lighthouse Score</div>
+          </div>
+        </div>
+        <div class="svcpage-stat">
+          <div class="svcpage-stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+          <div>
+            <div class="svcpage-stat-num">3–14d</div>
+            <div class="svcpage-stat-label">Delivery Timeline</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conversion flow -->
+  <div class="svc-flow-strip reveal" style="margin-top:20px;">
+    <div class="svc-flow-step"><div class="num">01</div> Discovery Call</div>
+    <div class="svc-flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="svc-flow-step"><div class="num">02</div> Proposal &amp; Timeline</div>
+    <div class="svc-flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="svc-flow-step"><div class="num">03</div> Design &amp; Build</div>
+    <div class="svc-flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="svc-flow-step"><div class="num">04</div> Review &amp; Revise</div>
+    <div class="svc-flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+    <div class="svc-flow-step"><div class="num">05</div> Launch 🚀</div>
+  </div>
+
+  <!-- Sub-services: Landing Pages -->
+  <div style="margin-top:20px;" class="reveal">
+    <div class="svcpage-card">
+      <div class="svcpage-card-icon"><i class="fa-solid fa-bullseye"></i></div>
+      <h3>Lead-Generation Landing Pages</h3>
+      <p>Not just a pretty page — a conversion machine. Psychology-backed layouts with strong headlines, clear CTAs, social proof and objection handling. Built to turn visitors into paying clients from day one.</p>
+      <ul class="svcpage-card-features">
+        <li><i class="fa-solid fa-circle-dot"></i> Above-fold hero with a compelling headline</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Social proof, testimonials &amp; trust signals</li>
+        <li><i class="fa-solid fa-circle-dot"></i> WhatsApp / Google Form CTA integration</li>
+        <li><i class="fa-solid fa-circle-dot"></i> FAQ &amp; objection-handling section</li>
       </ul>
-      <div style="margin-top:28px;"><strong style="color:var(--primary);font-size:1.1rem;">₹6,999 – ₹19,999</strong> <span style="color:var(--muted);font-size:0.9rem;">based on package</span></div>
-    </div>
-    <div class="card" style="background:var(--card2);padding:40px;text-align:center;">
-      <i class="fa-solid fa-laptop-code" style="font-size:5rem;color:var(--primary);opacity:0.2;margin-bottom:20px;display:block;"></i>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left;">
-        <div style="background:var(--card);border-radius:10px;padding:16px;">
-          <div style="color:var(--primary);font-size:1.4rem;font-weight:800;font-family:'Syne',sans-serif;">&lt;2s</div>
-          <div style="color:var(--muted);font-size:0.82rem;">Load Time</div>
+      <div class="svcpage-card-footer">
+        <div>
+          <div class="svcpage-card-price">₹6,999 – ₹9,999 <span>standalone page</span></div>
         </div>
-        <div style="background:var(--card);border-radius:10px;padding:16px;">
-          <div style="color:var(--primary);font-size:1.4rem;font-weight:800;font-family:'Syne',sans-serif;">100</div>
-          <div style="color:var(--muted);font-size:0.82rem;">Lighthouse Score</div>
-        </div>
-        <div style="background:var(--card);border-radius:10px;padding:16px;">
-          <div style="color:var(--primary);font-size:1.4rem;font-weight:800;font-family:'Syne',sans-serif;">₹0</div>
-          <div style="color:var(--muted);font-size:0.82rem;">Hosting Cost</div>
-        </div>
-        <div style="background:var(--card);border-radius:10px;padding:16px;">
-          <div style="color:var(--primary);font-size:1.4rem;font-weight:800;font-family:'Syne',sans-serif;">3–14d</div>
-          <div style="color:var(--muted);font-size:0.82rem;">Delivery</div>
-        </div>
+        <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20need%20a%20landing%20page." class="svcpage-card-link" target="_blank"><i class="fa-brands fa-whatsapp"></i> Enquire Now <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Service 2 -->
-  <div class="service-2col reveal">
-    <div class="card" style="background:var(--card2);padding:40px;">
-      <i class="fa-solid fa-bullseye" style="font-size:4rem;color:var(--primary);opacity:0.15;margin-bottom:20px;display:block;"></i>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <div style="background:var(--card);border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;">
-          <i class="fa-solid fa-arrow-pointer" style="color:var(--primary);"></i>
-          <span style="font-size:0.9rem;color:var(--muted);">Above-fold hero with strong headline</span>
-        </div>
-        <div style="background:var(--card);border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;">
-          <i class="fa-solid fa-arrow-pointer" style="color:var(--primary);"></i>
-          <span style="font-size:0.9rem;color:var(--muted);">Social proof & trust signals</span>
-        </div>
-        <div style="background:var(--card);border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;">
-          <i class="fa-solid fa-arrow-pointer" style="color:var(--primary);"></i>
-          <span style="font-size:0.9rem;color:var(--muted);">WhatsApp / Form CTA</span>
-        </div>
-        <div style="background:var(--card);border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;">
-          <i class="fa-solid fa-arrow-pointer" style="color:var(--primary);"></i>
-          <span style="font-size:0.9rem;color:var(--muted);">FAQ & objection handling</span>
-        </div>
-      </div>
+<!-- =============================================
+     SECTION 2: BILLING SOFTWARE
+     ============================================= -->
+<section style="background:var(--bg2);">
+  <div class="svc-category-label reveal"><i class="fa-solid fa-file-invoice-dollar"></i> Business Software</div>
+
+  <div class="svcpage-card billing-highlight reveal">
+    <div class="billing-badge"><i class="fa-solid fa-shield-halved"></i> Local · Affordable · One-Time</div>
+    <div class="svcpage-card-icon" style="width:52px;height:52px;"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+    <h3>Billing Software Solutions</h3>
+    <p>Stop paying monthly SaaS fees for basic billing. We build you a clean, fast, locally-hosted billing and invoicing system tailored to your business — shops, coaching institutes, clinics, and small businesses. One-time setup cost. Runs on your own machine. No internet required for daily operations.</p>
+    <ul class="svcpage-card-features">
+      <li><i class="fa-solid fa-circle-dot"></i> One-time setup — no recurring subscription fees</li>
+      <li><i class="fa-solid fa-circle-dot"></i> Runs locally on your computer — no cloud dependency</li>
+      <li><i class="fa-solid fa-circle-dot"></i> Invoice generation with your branding</li>
+      <li><i class="fa-solid fa-circle-dot"></i> Product / service catalogue management</li>
+      <li><i class="fa-solid fa-circle-dot"></i> Customer records &amp; billing history</li>
+      <li><i class="fa-solid fa-circle-dot"></i> Print &amp; PDF export support</li>
+    </ul>
+    <div class="billing-tags">
+      <span class="billing-tag accent">One-Time Setup</span>
+      <span class="billing-tag accent">Local Hosting</span>
+      <span class="billing-tag accent">No Monthly Fees</span>
+      <span class="billing-tag">Shops &amp; Retail</span>
+      <span class="billing-tag">Coaching Institutes</span>
+      <span class="billing-tag">Clinics</span>
+      <span class="billing-tag">Small Business</span>
     </div>
-    <div>
-      <div class="card-icon" style="margin-bottom:20px;"><i class="fa-solid fa-bullseye"></i></div>
-      <h3 style="font-size:1.6rem;font-weight:800;margin-bottom:16px;">Lead-Generation Landing Pages</h3>
-      <p style="color:var(--muted);margin-bottom:24px;">Not just a pretty page — a conversion machine. We engineer landing pages with psychology-backed layouts: strong headlines, clear CTAs, trust signals and objection handling. Built to turn visitors into paying clients.</p>
-      <div style="margin-top:28px;"><strong style="color:var(--primary);font-size:1.1rem;">₹6,999 – ₹9,999</strong> <span style="color:var(--muted);font-size:0.9rem;">standalone page</span></div>
+    <div class="svcpage-card-footer" style="margin-top:24px;">
+      <div>
+        <div class="svcpage-card-price">Starting ₹3,999 <span>one-time · no hidden fees</span></div>
+      </div>
+      <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I'm%20interested%20in%20billing%20software." class="svcpage-card-link" target="_blank"><i class="fa-brands fa-whatsapp"></i> Enquire Now <i class="fa-solid fa-arrow-right"></i></a>
     </div>
   </div>
+</section>
 
-  <!-- Service 3: Ebook -->
-  <div style="padding:50px 0;border-bottom:1px solid var(--border);" class="reveal">
-    <div class="card-icon" style="margin-bottom:20px;"><i class="fa-solid fa-book-open"></i></div>
-    <h3 style="font-size:1.6rem;font-weight:800;margin-bottom:16px;">E-Book Creation</h3>
-    <p style="color:var(--muted);max-width:700px;margin-bottom:36px;">Position yourself as the authority in your niche. We design professional, visually stunning ebooks that you can use as lead magnets, sellable products or authority builders. For educators, coaches, consultants and founders.</p>
-    <div class="grid-3">
-      <div class="card" style="padding:24px;">
-        <i class="fa-solid fa-file-pdf" style="color:var(--primary);margin-bottom:12px;font-size:1.5rem;display:block;"></i>
-        <strong>Starter Ebook</strong><br>
-        <span style="color:var(--muted);font-size:0.9rem;">10–15 pages · ₹2,999</span>
-      </div>
-      <div class="card" style="padding:24px;border-color:var(--border-hover);">
-        <i class="fa-solid fa-file-pdf" style="color:var(--primary);margin-bottom:12px;font-size:1.5rem;display:block;"></i>
-        <strong>Professional Ebook</strong><br>
-        <span style="color:var(--muted);font-size:0.9rem;">15–25 pages · ₹4,999</span>
-      </div>
-      <div class="card" style="padding:24px;">
-        <i class="fa-solid fa-file-pdf" style="color:var(--primary);margin-bottom:12px;font-size:1.5rem;display:block;"></i>
-        <strong>Premium Ebook</strong><br>
-        <span style="color:var(--muted);font-size:0.9rem;">25–35 pages · ₹6,999</span>
+<!-- =============================================
+     SECTION 3: CREATIVE SERVICES
+     ============================================= -->
+<section>
+  <div class="svc-category-label reveal"><i class="fa-solid fa-palette"></i> Creative &amp; Design Services</div>
+  <h2 class="section-title reveal" style="margin-bottom:12px;">Design That <span>Demands Attention</span></h2>
+  <p class="section-sub reveal" style="margin-bottom:48px;">From scroll-stopping videos to premium print-ready designs — everything crafted to elevate your brand.</p>
+
+  <div class="svcpage-grid cols-3">
+
+    <!-- Video Editing -->
+    <div class="svcpage-card reveal">
+      <div class="svcpage-card-icon"><i class="fa-solid fa-film"></i></div>
+      <h3>Video Editing</h3>
+      <p>Professional video editing for reels, promotional videos, course content and social media. Fast turnaround, clean cuts, dynamic transitions and engaging output that holds attention.</p>
+      <ul class="svcpage-card-features">
+        <li><i class="fa-solid fa-circle-dot"></i> Instagram Reels &amp; YouTube Shorts</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Promo &amp; ad videos</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Course &amp; educational content</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Captions, music &amp; motion graphics</li>
+      </ul>
+      <div class="svcpage-card-footer">
+        <div class="svcpage-card-price">Starting ₹999 <span>per video</span></div>
+        <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20need%20video%20editing." class="svcpage-card-link" target="_blank">Enquire <i class="fa-solid fa-arrow-right"></i></a>
       </div>
     </div>
+
+    <!-- Poster & Social Media Design -->
+    <div class="svcpage-card reveal reveal-delay-1">
+      <div class="svcpage-card-icon"><i class="fa-solid fa-palette"></i></div>
+      <h3>Poster &amp; Social Media Design</h3>
+      <p>Eye-catching posters, event flyers, social media creatives and marketing collateral that reflect your brand identity and stop the scroll on any platform.</p>
+      <ul class="svcpage-card-features">
+        <li><i class="fa-solid fa-circle-dot"></i> Instagram &amp; Facebook posts/stories</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Event &amp; promotional posters</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Brand kits &amp; logo usage</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Print-ready &amp; digital formats</li>
+      </ul>
+      <div class="svcpage-card-footer">
+        <div class="svcpage-card-price">Starting ₹499 <span>per design</span></div>
+        <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20need%20poster%20design." class="svcpage-card-link" target="_blank">Enquire <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- eBook / PDF Designing -->
+    <div class="svcpage-card reveal reveal-delay-2">
+      <div class="svcpage-card-icon"><i class="fa-solid fa-book-open"></i></div>
+      <h3>eBook &amp; PDF Designing</h3>
+      <p>Professionally designed ebooks, course PDFs and lead magnets for educators, coaches and brands. Build authority, create digital products and give your content the visual weight it deserves.</p>
+      <ul class="svcpage-card-features">
+        <li><i class="fa-solid fa-circle-dot"></i> Lead magnets &amp; opt-in PDFs</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Course &amp; training materials</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Sellable digital ebooks</li>
+        <li><i class="fa-solid fa-circle-dot"></i> Branded, print-ready output</li>
+      </ul>
+      <div class="svcpage-card-footer">
+        <div class="svcpage-card-price">₹2,999 – ₹6,999 <span>10–35 pages</span></div>
+        <a href="https://wa.me/919142450715?text=Hi%20SparkEdge!%20I%20need%20an%20ebook%20designed." class="svcpage-card-link" target="_blank">Enquire <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -272,7 +778,7 @@
       <p style="margin-top:14px;color:var(--muted);font-size:0.9rem;">Premium web experiences for coaching institutes, schools, hospitals and growing businesses across India.</p>
     </div>
     <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="team.html">Team</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Website Development</a></li><li><a href="services.html">Landing Pages</a></li><li><a href="services.html">E-Book Creation</a></li><li><a href="services.html">SEO Setup</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Website Development</a></li><li><a href="services.html">Billing Software</a></li><li><a href="services.html">Video Editing</a></li><li><a href="services.html">eBook Design</a></li></ul></div>
     <div class="footer-col"><h4>Contact</h4><ul>
       <li><a href="https://wa.me/919142450715" target="_blank"><i class="fa-brands fa-whatsapp" style="color:var(--primary);margin-right:6px;"></i>+91 91424 50715</a></li>
       <li><a href="mailto:sparkedge555@gmail.com"><i class="fa-solid fa-envelope" style="color:var(--primary);margin-right:6px;"></i>sparkedge555@gmail.com</a></li>
