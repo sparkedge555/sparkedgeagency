@@ -12,7 +12,6 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SparkEdge","url":"https://sparkedge-agency.github.io","contactPoint":{"@type":"ContactPoint","telephone":"+91-9142450715","contactType":"customer service"}}</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
-
   <link rel="icon" type="image/x-icon" href="favicon-icon.ico">
   <style>
     .hero { min-height: 100vh; display: flex; align-items: center; padding-top: calc(var(--nav-h) + 40px); position: relative; overflow: hidden; }
@@ -21,12 +20,11 @@
     .particle { position: absolute; width: 2px; height: 2px; background: var(--primary); border-radius: 50%; animation: particle-rise linear infinite; opacity: 0; }
     @keyframes particle-rise { 0% { transform: translateY(100vh); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.3; } 100% { transform: translateY(-100px); opacity: 0; } }
 
-    /* === FIXED WORD ROTATE === */
+    /* === WORD ROTATE === */
     .word-rotate-wrap {
       display: inline-block;
       overflow: hidden;
       vertical-align: middle;
-      /* height set via JS after fonts load */
     }
     .word-rotate-track {
       display: flex;
@@ -63,7 +61,6 @@
     .marquee-dot { color: rgba(255,255,255,0.5); }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* Founder preview */
     .team-preview-strip { background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 60px 8%; }
     .founder-preview { display: flex; align-items: center; gap: 32px; background: var(--card2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; max-width: 640px; transition: all 0.3s; text-decoration: none; color: inherit; }
     .founder-preview:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
@@ -78,17 +75,41 @@
     .cal-container { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; min-height: 600px; }
     #my-cal-inline-30min { width: 100%; height: 650px; overflow: scroll; }
 
-    @media (max-width: 900px) { .hero-float-cards { display: none; } .hero-title { font-size: clamp(2rem, 7vw, 3rem); } }
+    @media (max-width: 900px) {
+      .hero-float-cards { display: none; }
+      .hero-title { font-size: clamp(2rem, 7vw, 3rem); }
+    }
+
+    /* =====================================================
+       MOBILE FIX — HERO ONLY — nothing else changed
+       Root cause: font too big → "High-Conversion" breaks
+       Word rotate: words must not overflow screen width
+       ===================================================== */
     @media (max-width: 640px) {
       .hero { padding-top: calc(var(--nav-h) + 24px); padding-bottom: 48px; }
       .hero-inner { padding: 0 20px; width: 100%; box-sizing: border-box; }
 
-      /* ── FIX: reduce font so "High-Conversion" fits on one line ── */
-      .hero-title { font-size: clamp(1.1rem, 5.5vw, 1.65rem); margin-bottom: 18px; word-break: normal; overflow-wrap: normal; white-space: nowrap; }
+      /* Smaller font so "High-Conversion" stays on one line
+         and rotating words stay within viewport width         */
+      .hero-title {
+        font-size: clamp(1.25rem, 6vw, 1.7rem);
+        margin-bottom: 18px;
+        word-break: normal;
+        overflow-wrap: normal;
+      }
 
-      /* ── FIX: word-rotate slot must be tall enough for all words ── */
-      .word-rotate-wrap { overflow: visible; max-width: 100%; white-space: nowrap; }
-      .word-rotate-track .wr-word { white-space: nowrap; }
+      /* word-rotate: keep overflow:hidden so words don't bleed,
+         but allow wrap to be wide enough for longest word       */
+      .word-rotate-wrap {
+        overflow: hidden;
+        max-width: calc(100vw - 40px); /* never wider than screen */
+        vertical-align: middle;
+      }
+      /* Let long words scale down with the title font instead of overflowing */
+      .word-rotate-track .wr-word {
+        white-space: nowrap;
+        font-size: inherit;
+      }
 
       .hero-sub { font-size: 0.92rem; line-height: 1.6; }
       .hero-ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -101,244 +122,44 @@
     }
 
     /* =============================================
-       PREMIUM SERVICES SECTION — HOME PAGE
+       PREMIUM SERVICES SECTION
        ============================================= */
-    #services.services-premium {
-      background: var(--bg2);
-      position: relative;
-      overflow: hidden;
-    }
-    #services.services-premium::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      right: -120px;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(252,101,58,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    #services.services-premium { background: var(--bg2); position: relative; overflow: hidden; }
+    #services.services-premium::before { content: ''; position: absolute; top: -120px; right: -120px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(252,101,58,0.06) 0%, transparent 70%); pointer-events: none; }
 
-    /* Main service hero card */
-    .svc-main-card {
-      position: relative;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 48px 52px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
-      overflow: hidden;
-      margin-bottom: 28px;
-      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-      text-decoration: none;
-      color: inherit;
-    }
-    .svc-main-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(252,101,58,0.05) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .svc-main-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 24px 64px rgba(252,101,58,0.15);
-      transform: translateY(-4px);
-    }
-    .svc-main-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      padding: 5px 13px;
-      border-radius: 100px;
-      margin-bottom: 18px;
-    }
-    .svc-main-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 800;
-      margin-bottom: 14px;
-      line-height: 1.2;
-    }
-    .svc-main-desc {
-      color: var(--muted);
-      font-size: 0.97rem;
-      line-height: 1.7;
-      max-width: 560px;
-      margin-bottom: 28px;
-    }
-    .svc-main-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .svc-pill {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--card2);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 7px 15px;
-      font-size: 0.82rem;
-      color: var(--muted);
-      font-weight: 500;
-      transition: border-color 0.2s, color 0.2s;
-    }
+    .svc-main-card { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 48px 52px; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; overflow: hidden; margin-bottom: 28px; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; text-decoration: none; color: inherit; }
+    .svc-main-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(252,101,58,0.05) 0%, transparent 60%); pointer-events: none; }
+    .svc-main-card:hover { border-color: var(--primary); box-shadow: 0 24px 64px rgba(252,101,58,0.15); transform: translateY(-4px); }
+    .svc-main-badge { display: inline-flex; align-items: center; gap: 7px; background: var(--primary); color: #fff; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 13px; border-radius: 100px; margin-bottom: 18px; }
+    .svc-main-title { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 14px; line-height: 1.2; }
+    .svc-main-desc { color: var(--muted); font-size: 0.97rem; line-height: 1.7; max-width: 560px; margin-bottom: 28px; }
+    .svc-main-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .svc-pill { display: flex; align-items: center; gap: 7px; background: var(--card2); border: 1px solid var(--border); border-radius: 100px; padding: 7px 15px; font-size: 0.82rem; color: var(--muted); font-weight: 500; transition: border-color 0.2s, color 0.2s; }
     .svc-pill i { color: var(--primary); font-size: 0.78rem; }
     .svc-main-card:hover .svc-pill { border-color: rgba(252,101,58,0.25); }
-    .svc-main-visual {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      min-width: 180px;
-    }
-    .svc-stat-box {
-      background: var(--card2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px 22px;
-      text-align: center;
-    }
-    .svc-stat-box .num {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: var(--primary);
-      display: block;
-    }
-    .svc-stat-box .lbl {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 2px;
-      display: block;
-    }
-    .svc-main-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.92rem;
-      margin-top: 24px;
-      transition: gap 0.2s;
-    }
+    .svc-main-visual { display: flex; flex-direction: column; gap: 14px; min-width: 180px; }
+    .svc-stat-box { background: var(--card2); border: 1px solid var(--border); border-radius: 14px; padding: 18px 22px; text-align: center; }
+    .svc-stat-box .num { font-family: 'Syne', sans-serif; font-size: 1.7rem; font-weight: 800; color: var(--primary); display: block; }
+    .svc-stat-box .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 2px; display: block; }
+    .svc-main-cta { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-weight: 700; font-size: 0.92rem; margin-top: 24px; transition: gap 0.2s; }
     .svc-main-card:hover .svc-main-cta { gap: 14px; }
 
-    /* Other services grid */
-    .svc-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-    .svc-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px 24px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .svc-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--primary);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-      transform-origin: left;
-    }
-    .svc-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.35);
-    }
-    .svc-card:hover::after {
-      transform: scaleX(1);
-    }
-    .svc-card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--primary-dim);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      font-size: 1.1rem;
-      margin-bottom: 18px;
-      flex-shrink: 0;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .svc-card:hover .svc-card-icon {
-      background: var(--primary);
-      color: #fff;
-      transform: scale(1.08);
-    }
-    .svc-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      line-height: 1.3;
-    }
-    .svc-card p {
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.65;
-      flex: 1;
-    }
-    .svc-card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 16px;
-    }
-    .svc-tag {
-      font-size: 0.72rem;
-      background: var(--card2);
-      color: var(--muted);
-      border-radius: 100px;
-      padding: 3px 10px;
-      border: 1px solid var(--border);
-      font-weight: 500;
-    }
-    .svc-tag.highlight {
-      background: rgba(252,101,58,0.1);
-      color: var(--primary);
-      border-color: rgba(252,101,58,0.25);
-    }
+    .svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .svc-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px 24px; display: flex; flex-direction: column; gap: 0; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+    .svc-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--primary); transform: scaleX(0); transition: transform 0.3s ease; transform-origin: left; }
+    .svc-card:hover { border-color: var(--border-hover); transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.35); }
+    .svc-card:hover::after { transform: scaleX(1); }
+    .svc-card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--primary-dim); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1.1rem; margin-bottom: 18px; flex-shrink: 0; transition: background 0.3s, transform 0.3s; }
+    .svc-card:hover .svc-card-icon { background: var(--primary); color: #fff; transform: scale(1.08); }
+    .svc-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+    .svc-card p { color: var(--muted); font-size: 0.86rem; line-height: 1.65; flex: 1; }
+    .svc-card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .svc-tag { font-size: 0.72rem; background: var(--card2); color: var(--muted); border-radius: 100px; padding: 3px 10px; border: 1px solid var(--border); font-weight: 500; }
+    .svc-tag.highlight { background: rgba(252,101,58,0.1); color: var(--primary); border-color: rgba(252,101,58,0.25); }
 
-    @media (max-width: 1024px) {
-      .svc-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 768px) {
-      .svc-main-card { grid-template-columns: 1fr; padding: 32px 28px; }
-      .svc-main-visual { flex-direction: row; min-width: unset; justify-content: flex-start; }
-      .svc-stat-box { flex: 1; }
-    }
-    @media (max-width: 600px) {
-      .svc-grid { grid-template-columns: 1fr; }
-      .svc-main-card { padding: 26px 22px; }
-      .svc-main-visual { flex-direction: row; }
-    }
+    @media (max-width: 1024px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) { .svc-main-card { grid-template-columns: 1fr; padding: 32px 28px; } .svc-main-visual { flex-direction: row; min-width: unset; justify-content: flex-start; } .svc-stat-box { flex: 1; } }
+    @media (max-width: 600px) { .svc-grid { grid-template-columns: 1fr; } .svc-main-card { padding: 26px 22px; } .svc-main-visual { flex-direction: row; } }
   </style>
 </head>
 <body>
@@ -460,7 +281,6 @@
   </div>
 </div>
 
-<!-- FOUNDER PREVIEW -->
 <div class="team-preview-strip reveal">
   <div class="section-label"><i class="fa-solid fa-user"></i> The Founder</div>
   <h3 style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;margin-top:10px;margin-bottom:6px;">The Mind Behind SparkEdge</h3>
@@ -480,15 +300,11 @@
   </a>
 </div>
 
-<!-- =============================================
-     SERVICES PREVIEW — PREMIUM REDESIGN
-     ============================================= -->
 <section id="services" class="services-premium">
   <div class="section-label reveal"><i class="fa-solid fa-star"></i> What We Do</div>
   <h2 class="section-title reveal">Our Core <span>Services</span></h2>
   <p class="section-sub reveal">Everything your business needs to dominate online — designed to convert.</p>
 
-  <!-- MAIN SERVICE: Website Design & Development -->
   <div class="svc-main-card reveal">
     <div>
       <div class="svc-main-badge"><i class="fa-solid fa-crown"></i> Flagship Service</div>
@@ -502,77 +318,42 @@
         <span class="svc-pill"><i class="fa-solid fa-server"></i> Free Hosting</span>
         <span class="svc-pill"><i class="fa-solid fa-pen-nib"></i> Conversion Copy</span>
       </div>
-      <div class="svc-main-cta" href="#packages">
+      <div class="svc-main-cta button" href="#packages">
         Explore Website Packages <i class="fa-solid fa-arrow-right"></i>
       </div>
     </div>
     <div class="svc-main-visual">
-      <div class="svc-stat-box">
-        <span class="num">₹0</span>
-        <span class="lbl">Hosting / Month</span>
-      </div>
-      <div class="svc-stat-box">
-        <span class="num">&lt;2s</span>
-        <span class="lbl">Load Time</span>
-      </div>
-      <div class="svc-stat-box">
-        <span class="num">3d</span>
-        <span class="lbl">Fast Delivery</span>
-      </div>
+      <div class="svc-stat-box"><span class="num">₹0</span><span class="lbl">Hosting / Month</span></div>
+      <div class="svc-stat-box"><span class="num">&lt;2s</span><span class="lbl">Load Time</span></div>
+      <div class="svc-stat-box"><span class="num">3d</span><span class="lbl">Fast Delivery</span></div>
     </div>
   </div>
 
-  <!-- OTHER SERVICES GRID -->
   <div class="svc-grid">
-
-    <!-- Billing Software -->
     <div class="svc-card reveal">
       <div class="svc-card-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
       <h3>Billing Software Solutions</h3>
       <p>Affordable, locally-hosted billing and invoicing software for small businesses, shops and institutes. One-time setup, no recurring SaaS fees.</p>
-      <div class="svc-card-tags">
-        <span class="svc-tag highlight">One-Time Setup</span>
-        <span class="svc-tag">Local Hosting</span>
-        <span class="svc-tag">Affordable</span>
-      </div>
+      <div class="svc-card-tags"><span class="svc-tag highlight">One-Time Setup</span><span class="svc-tag">Local Hosting</span><span class="svc-tag">Affordable</span></div>
     </div>
-
-    <!-- Video Editing -->
     <div class="svc-card reveal reveal-delay-1">
       <div class="svc-card-icon"><i class="fa-solid fa-film"></i></div>
       <h3>Video Editing</h3>
       <p>Professional video editing for reels, promos, course content and social media. Fast turnaround, clean cuts, smooth transitions — scroll-stopping output.</p>
-      <div class="svc-card-tags">
-        <span class="svc-tag">Reels & Shorts</span>
-        <span class="svc-tag">Promo Videos</span>
-        <span class="svc-tag">Course Content</span>
-      </div>
+      <div class="svc-card-tags"><span class="svc-tag">Reels & Shorts</span><span class="svc-tag">Promo Videos</span><span class="svc-tag">Course Content</span></div>
     </div>
-
-    <!-- Poster & Social Media Design -->
     <div class="svc-card reveal reveal-delay-2">
       <div class="svc-card-icon"><i class="fa-solid fa-palette"></i></div>
       <h3>Poster &amp; Social Media Design</h3>
       <p>Eye-catching posters, banners, social media creatives and marketing collateral that reflect your brand and demand attention in the feed.</p>
-      <div class="svc-card-tags">
-        <span class="svc-tag">Instagram</span>
-        <span class="svc-tag">Event Posters</span>
-        <span class="svc-tag">Brand Kits</span>
-      </div>
+      <div class="svc-card-tags"><span class="svc-tag">Instagram</span><span class="svc-tag">Event Posters</span><span class="svc-tag">Brand Kits</span></div>
     </div>
-
-    <!-- eBook / PDF Designing -->
     <div class="svc-card reveal reveal-delay-3">
       <div class="svc-card-icon"><i class="fa-solid fa-book-open"></i></div>
       <h3>eBook &amp; PDF Designing</h3>
       <p>Professionally designed ebooks, PDFs and lead magnets for coaches, educators and brands. Build authority, nurture leads and sell your expertise.</p>
-      <div class="svc-card-tags">
-        <span class="svc-tag">Lead Magnets</span>
-        <span class="svc-tag">Course PDFs</span>
-        <span class="svc-tag">Digital Products</span>
-      </div>
+      <div class="svc-card-tags"><span class="svc-tag">Lead Magnets</span><span class="svc-tag">Course PDFs</span><span class="svc-tag">Digital Products</span></div>
     </div>
-
   </div>
 
   <div style="text-align:center;margin-top:52px;" class="reveal">
@@ -580,7 +361,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
 <section id="packages">
   <div class="section-label reveal"><i class="fa-solid fa-tag"></i> Transparent Pricing</div>
   <h2 class="section-title reveal" style="text-align:center;">Website <span>Packages</span></h2>
@@ -635,7 +415,6 @@
   </div>
 </section>
 
-<!-- BOOK A CALL -->
 <section class="booking-section">
   <div class="section-label reveal" style="justify-content:center;"><i class="fa-solid fa-calendar-check"></i> Book a Call</div>
   <h2 class="section-title reveal" style="text-align:center;">Schedule a Free <span>30-Min Consultation</span></h2>
@@ -645,7 +424,6 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="section-label reveal"><i class="fa-solid fa-quote-left"></i> Client Feedback</div>
   <h2 class="section-title reveal">What Our <span>Clients Say</span></h2>
@@ -677,7 +455,6 @@
   </div>
 </section>
 
-<!-- FAQ -->
 <section style="background:var(--bg2);">
   <div class="section-label reveal"><i class="fa-solid fa-circle-question"></i> FAQ</div>
   <h2 class="section-title reveal">Common <span>Questions</span></h2>
@@ -705,7 +482,6 @@
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section">
   <div style="position:relative;z-index:2;">
     <div class="section-label" style="justify-content:center;margin-bottom:20px;"><i class="fa-solid fa-fire"></i> Ready to Grow?</div>
@@ -741,7 +517,6 @@
 
 <a class="whatsapp-float" href="https://wa.me/919142450715?text=Hi%20SparkEdge!" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 
-<!-- Cal inline ONLY — no floating button -->
 <script type="text/javascript">
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
   Cal("init", "30min", {origin:"https://app.cal.com"});
@@ -755,41 +530,49 @@
 
 <script src="main.js"></script>
 <script>
-/* ── FIXED Word Rotate: measures actual rendered height after fonts load ── */
+/* ── Word Rotate — CORRECTED for mobile ── */
 (function() {
   function initWordRotate() {
-    var wrap = document.getElementById('wordRotateWrap');
+    var wrap  = document.getElementById('wordRotateWrap');
     var track = document.getElementById('wordRotateTrack');
     if (!wrap || !track) return;
+
     var words = track.querySelectorAll('.wr-word');
     if (!words.length) return;
 
-    // On mobile, overflow:visible is set via CSS so no height clipping.
-    // Still set height so the slot in the title line is reserved correctly.
-    var h = words[0].offsetHeight;
-    if (!h) h = Math.round(parseFloat(getComputedStyle(document.querySelector('.hero-title')).fontSize) * 1.15);
+    /* On mobile the font is smaller, so re-measure after layout settles */
+    function setup() {
+      var h = words[0].getBoundingClientRect().height;
+      if (!h) {
+        var fs = parseFloat(getComputedStyle(wrap).fontSize);
+        h = Math.round(fs * 1.15);
+      }
+      /* Set slot height — overflow:hidden already set in CSS */
+      wrap.style.height = h + 'px';
 
-    // Only apply height clipping on non-mobile (where overflow:hidden is active)
-    if (window.innerWidth > 640) {
-      wrap.style.height = h + 'px';
-    } else {
-      // On mobile: let height be auto, just set it for JS slide math
-      wrap.style.height = h + 'px';
-      // but keep overflow visible (already set in CSS)
+      var current = 0;
+      clearInterval(wrap._wr);
+      wrap._wr = setInterval(function() {
+        current = (current + 1) % words.length;
+        track.style.transform = 'translateY(-' + (current * h) + 'px)';
+      }, 2400);
     }
 
-    var current = 0;
-    setInterval(function() {
-      current = (current + 1) % words.length;
-      track.style.transform = 'translateY(-' + (current * h) + 'px)';
-    }, 2400);
+    /* Run after fonts AND a small paint delay so sizes are accurate */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function() { requestAnimationFrame(function() { requestAnimationFrame(setup); }); });
+    } else {
+      window.addEventListener('load', function() { requestAnimationFrame(function() { requestAnimationFrame(setup); }); });
+    }
+
+    /* Also re-run on resize (portrait ↔ landscape) */
+    window.addEventListener('resize', function() {
+      clearInterval(wrap._wr);
+      requestAnimationFrame(setup);
+    });
   }
 
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(initWordRotate);
-  } else {
-    window.addEventListener('load', initWordRotate);
-  }
+  initWordRotate();
 })();
 
 /* ── Hero particles ── */
