@@ -82,15 +82,20 @@
     @media (max-width: 640px) {
       .hero { padding-top: calc(var(--nav-h) + 24px); padding-bottom: 48px; }
       .hero-inner { padding: 0 20px; width: 100%; box-sizing: border-box; }
-      .hero-title { font-size: clamp(1.65rem, 7.5vw, 2.4rem); margin-bottom: 18px; word-break: break-word; overflow-wrap: break-word; }
+
+      /* ── FIX: reduce font so "High-Conversion" fits on one line ── */
+      .hero-title { font-size: clamp(1.1rem, 5.5vw, 1.65rem); margin-bottom: 18px; word-break: normal; overflow-wrap: normal; white-space: nowrap; }
+
+      /* ── FIX: word-rotate slot must be tall enough for all words ── */
+      .word-rotate-wrap { overflow: visible; max-width: 100%; white-space: nowrap; }
+      .word-rotate-track .wr-word { white-space: nowrap; }
+
       .hero-sub { font-size: 0.92rem; line-height: 1.6; }
       .hero-ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
       .hero-ctas .btn { width: 100%; justify-content: center; text-align: center; }
       .hero-stats { flex-wrap: wrap; gap: 16px; }
       .hero-stat { min-width: calc(50% - 8px); }
       .hero-badge { font-size: 0.75rem; padding: 6px 12px; white-space: normal; text-align: center; }
-      .word-rotate-wrap { max-width: 100%; }
-      .word-rotate-track .wr-word { white-space: normal; }
       .founder-preview { flex-direction: column; text-align: center; gap: 20px; }
       .founder-preview-cta { justify-content: center; }
     }
@@ -759,10 +764,19 @@
     var words = track.querySelectorAll('.wr-word');
     if (!words.length) return;
 
-    // Measure height of first word to set slot height
+    // On mobile, overflow:visible is set via CSS so no height clipping.
+    // Still set height so the slot in the title line is reserved correctly.
     var h = words[0].offsetHeight;
     if (!h) h = Math.round(parseFloat(getComputedStyle(document.querySelector('.hero-title')).fontSize) * 1.15);
-    wrap.style.height = h + 'px';
+
+    // Only apply height clipping on non-mobile (where overflow:hidden is active)
+    if (window.innerWidth > 640) {
+      wrap.style.height = h + 'px';
+    } else {
+      // On mobile: let height be auto, just set it for JS slide math
+      wrap.style.height = h + 'px';
+      // but keep overflow visible (already set in CSS)
+    }
 
     var current = 0;
     setInterval(function() {
